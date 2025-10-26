@@ -1,0 +1,413 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "game/game.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GameService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/games": {
+      "post": {
+        "summary": "Создать новую игру",
+        "operationId": "GameService_AddGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameAddGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameAddGameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
+    "/v1/games/list": {
+      "post": {
+        "summary": "Получить список игр с укороченной информацией",
+        "operationId": "GameService_GameList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGameListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGameListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
+    "/v1/games/update_game_status": {
+      "patch": {
+        "summary": "UpdateGameStatus обновить статус игры",
+        "operationId": "GameService_UpdateGameStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameUpdateGameStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameUpdateGameStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
+    "/v1/games/{gameId}": {
+      "get": {
+        "summary": "Получить игру с подробной информацией",
+        "operationId": "GameService_GetGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGetGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteGame удалить игру",
+        "operationId": "GameService_DeleteGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameDeleteGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "GameListResponseShortGame": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "gameAddGameRequest": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "$ref": "#/definitions/gameGameRequest"
+        }
+      }
+    },
+    "gameAddGameResponse": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameDeleteGameResponse": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameDomainGame": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameGameListRequest": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gameGameListResponse": {
+      "type": "object",
+      "properties": {
+        "games": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GameListResponseShortGame"
+          }
+        }
+      }
+    },
+    "gameGameRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImage": {
+          "type": "string",
+          "format": "byte"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gameGameStatusType": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PENDING",
+        "PUBLISH"
+      ],
+      "default": "DRAFT",
+      "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
+    },
+    "gameGetGameResponse": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "$ref": "#/definitions/gameDomainGame"
+        }
+      }
+    },
+    "gameUpdateGameStatusRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "newStatus": {
+          "$ref": "#/definitions/gameGameStatusType"
+        }
+      }
+    },
+    "gameUpdateGameStatusResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typeDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without\na year."
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a\nmonth and day."
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0\nto specify a year by itself or a year and month where the day isn't\nsignificant."
+        }
+      },
+      "description": "* A full date, with non-zero year, month, and day values\n* A month and day value, with a zero year, such as an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, such as a credit card expiration\ndate\n\nRelated types are [google.type.TimeOfDay][google.type.TimeOfDay] and\n`google.protobuf.Timestamp`.",
+      "title": "Represents a whole or partial calendar date, such as a birthday. The time of\nday and time zone are either specified elsewhere or are insignificant. The\ndate is relative to the Gregorian Calendar. This can represent one of the\nfollowing:"
+    }
+  }
+}
