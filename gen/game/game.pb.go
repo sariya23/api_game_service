@@ -430,6 +430,7 @@ type GameListRequest struct {
 	Limit         uint32                 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Genres        []string               `protobuf:"bytes,3,rep,name=genres,proto3" json:"genres,omitempty"`
 	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+	Offset        uint32                 `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -490,6 +491,13 @@ func (x *GameListRequest) GetTags() []string {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *GameListRequest) GetOffset() uint32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
 }
 
 type GameListResponse struct {
@@ -817,12 +825,13 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0eGetGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"7\n" +
 	"\x0fGetGameResponse\x12$\n" +
-	"\x04game\x18\x01 \x01(\v2\x10.game.DomainGameR\x04game\"g\n" +
+	"\x04game\x18\x01 \x01(\v2\x10.game.DomainGameR\x04game\"\x7f\n" +
 	"\x0fGameListRequest\x12\x12\n" +
 	"\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06genres\x18\x03 \x03(\tR\x06genres\x12\x12\n" +
-	"\x04tags\x18\x04 \x03(\tR\x04tags\"\xfe\x01\n" +
+	"\x04tags\x18\x04 \x03(\tR\x04tags\x12\x16\n" +
+	"\x06offset\x18\x05 \x01(\rR\x06offset\"\xfe\x01\n" +
 	"\x10GameListResponse\x126\n" +
 	"\x05games\x18\x01 \x03(\v2 .game.GameListResponse.ShortGameR\x05games\x1a\xb1\x01\n" +
 	"\tShortGame\x12\x0e\n" +
@@ -850,7 +859,7 @@ const file_game_game_proto_rawDesc = "" +
 	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/games/list\x12\\\n" +
 	"\n" +
 	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/v1/games/{game_id}\x12z\n" +
-	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v1/games/update_game_statusB3Z1github.com/sariya23/proto_api_games/gen/game;gameb\x06proto3"
+	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v1/games/update_game_statusB4Z2github.com/sariya23/api_game_service/gen/game;gameb\x06proto3"
 
 var (
 	file_game_game_proto_rawDescOnce sync.Once

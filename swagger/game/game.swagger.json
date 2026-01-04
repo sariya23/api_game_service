@@ -281,6 +281,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
