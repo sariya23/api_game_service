@@ -81,7 +81,7 @@ message GetGameResponse {
 }
 
 message GameListRequest {
-  int32 year = 1;
+  repeated int32 years = 1;
   uint32 limit = 2;
   repeated string genres = 3;
   repeated string tags = 4;

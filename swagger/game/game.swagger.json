@@ -262,9 +262,12 @@
     "gameGameListRequest": {
       "type": "object",
       "properties": {
-        "year": {
-          "type": "integer",
-          "format": "int32"
+        "years": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
         },
         "limit": {
           "type": "integer",

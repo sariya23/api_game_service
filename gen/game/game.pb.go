@@ -426,7 +426,7 @@ func (x *GetGameResponse) GetGame() *DomainGame {
 
 type GameListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Year          int32                  `protobuf:"varint,1,opt,name=year,proto3" json:"year,omitempty"`
+	Years         []int32                `protobuf:"varint,1,rep,packed,name=years,proto3" json:"years,omitempty"`
 	Limit         uint32                 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Genres        []string               `protobuf:"bytes,3,rep,name=genres,proto3" json:"genres,omitempty"`
 	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
@@ -465,11 +465,11 @@ func (*GameListRequest) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GameListRequest) GetYear() int32 {
+func (x *GameListRequest) GetYears() []int32 {
 	if x != nil {
-		return x.Year
+		return x.Years
 	}
-	return 0
+	return nil
 }
 
 func (x *GameListRequest) GetLimit() uint32 {
@@ -825,9 +825,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0eGetGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"7\n" +
 	"\x0fGetGameResponse\x12$\n" +
-	"\x04game\x18\x01 \x01(\v2\x10.game.DomainGameR\x04game\"\x7f\n" +
-	"\x0fGameListRequest\x12\x12\n" +
-	"\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n" +
+	"\x04game\x18\x01 \x01(\v2\x10.game.DomainGameR\x04game\"\x81\x01\n" +
+	"\x0fGameListRequest\x12\x14\n" +
+	"\x05years\x18\x01 \x03(\x05R\x05years\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06genres\x18\x03 \x03(\tR\x06genres\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12\x16\n" +
