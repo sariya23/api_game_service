@@ -262,12 +262,10 @@
     "gameGameListRequest": {
       "type": "object",
       "properties": {
-        "years": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
+        "year": {
+          "type": "integer",
+          "format": "int32",
+          "title": "deprecated"
         },
         "limit": {
           "type": "integer",
@@ -288,6 +286,13 @@
         "offset": {
           "type": "integer",
           "format": "int64"
+        },
+        "years": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
         }
       }
     },

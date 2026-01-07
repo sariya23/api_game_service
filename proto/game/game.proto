@@ -81,11 +81,12 @@ message GetGameResponse {
 }
 
 message GameListRequest {
-  repeated int32 years = 1;
+  int32 year = 1; // deprecated
   uint32 limit = 2;
   repeated string genres = 3;
   repeated string tags = 4;
   uint32 offset = 5;
+  repeated int32 years = 6;
 }
 
 message GameListResponse {
