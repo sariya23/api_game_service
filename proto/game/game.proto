@@ -81,7 +81,8 @@ message GetGameResponse {
 }
 
 message GameListRequest {
-  int32 year = 1; // deprecated
+  reserved 1;
+  reserved "year";
   uint32 limit = 2;
   repeated string genres = 3;
   repeated string tags = 4;

@@ -262,11 +262,6 @@
     "gameGameListRequest": {
       "type": "object",
       "properties": {
-        "year": {
-          "type": "integer",
-          "format": "int32",
-          "title": "deprecated"
-        },
         "limit": {
           "type": "integer",
           "format": "int64"
