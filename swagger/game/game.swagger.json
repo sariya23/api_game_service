@@ -82,6 +82,29 @@
         ]
       }
     },
+    "/v1/games/tags": {
+      "get": {
+        "summary": "GetTags получить тэги игр",
+        "operationId": "GameService_GetTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGetTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
     "/v1/games/update_game_status": {
       "patch": {
         "summary": "UpdateGameStatus обновить статус игры",
@@ -348,6 +371,17 @@
       "properties": {
         "game": {
           "$ref": "#/definitions/gameDomainGame"
+        }
+      }
+    },
+    "gameGetTagsResponse": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

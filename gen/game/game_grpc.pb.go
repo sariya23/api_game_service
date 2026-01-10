@@ -24,6 +24,7 @@ const (
 	GameService_GameList_FullMethodName         = "/game.GameService/GameList"
 	GameService_DeleteGame_FullMethodName       = "/game.GameService/DeleteGame"
 	GameService_UpdateGameStatus_FullMethodName = "/game.GameService/UpdateGameStatus"
+	GameService_GetTags_FullMethodName          = "/game.GameService/GetTags"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -40,6 +41,8 @@ type GameServiceClient interface {
 	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
 	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(ctx context.Context, in *UpdateGameStatusRequest, opts ...grpc.CallOption) (*UpdateGameStatusResponse, error)
+	// GetTags получить тэги игр
+	GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error)
 }
 
 type gameServiceClient struct {
@@ -100,6 +103,16 @@ func (c *gameServiceClient) UpdateGameStatus(ctx context.Context, in *UpdateGame
 	return out, nil
 }
 
+func (c *gameServiceClient) GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTagsResponse)
+	err := c.cc.Invoke(ctx, GameService_GetTags_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -114,6 +127,8 @@ type GameServiceServer interface {
 	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
 	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error)
+	// GetTags получить тэги игр
+	GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -138,6 +153,9 @@ func (UnimplementedGameServiceServer) DeleteGame(context.Context, *DeleteGameReq
 }
 func (UnimplementedGameServiceServer) UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameStatus not implemented")
+}
+func (UnimplementedGameServiceServer) GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTags not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -250,6 +268,24 @@ func _GameService_UpdateGameStatus_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_GetTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTagsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).GetTags(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_GetTags_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).GetTags(ctx, req.(*GetTagsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -276,6 +312,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateGameStatus",
 			Handler:    _GameService_UpdateGameStatus_Handler,
+		},
+		{
+			MethodName: "GetTags",
+			Handler:    _GameService_GetTags_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
