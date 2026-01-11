@@ -49,6 +49,29 @@
         ]
       }
     },
+    "/v1/games/genres": {
+      "get": {
+        "summary": "GetGenres получить жанры игр",
+        "operationId": "GameService_GetGenres",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGetGenresResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
     "/v1/games/list": {
       "post": {
         "summary": "Получить список игр с укороченной информацией",
@@ -371,6 +394,17 @@
       "properties": {
         "game": {
           "$ref": "#/definitions/gameDomainGame"
+        }
+      }
+    },
+    "gameGetGenresResponse": {
+      "type": "object",
+      "properties": {
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

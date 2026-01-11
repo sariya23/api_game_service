@@ -25,6 +25,7 @@ const (
 	GameService_DeleteGame_FullMethodName       = "/game.GameService/DeleteGame"
 	GameService_UpdateGameStatus_FullMethodName = "/game.GameService/UpdateGameStatus"
 	GameService_GetTags_FullMethodName          = "/game.GameService/GetTags"
+	GameService_GetGenres_FullMethodName        = "/game.GameService/GetGenres"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -43,6 +44,8 @@ type GameServiceClient interface {
 	UpdateGameStatus(ctx context.Context, in *UpdateGameStatusRequest, opts ...grpc.CallOption) (*UpdateGameStatusResponse, error)
 	// GetTags получить тэги игр
 	GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error)
+	// GetGenres получить жанры игр
+	GetGenres(ctx context.Context, in *GetGenresRequest, opts ...grpc.CallOption) (*GetGenresResponse, error)
 }
 
 type gameServiceClient struct {
@@ -113,6 +116,16 @@ func (c *gameServiceClient) GetTags(ctx context.Context, in *GetTagsRequest, opt
 	return out, nil
 }
 
+func (c *gameServiceClient) GetGenres(ctx context.Context, in *GetGenresRequest, opts ...grpc.CallOption) (*GetGenresResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGenresResponse)
+	err := c.cc.Invoke(ctx, GameService_GetGenres_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -129,6 +142,8 @@ type GameServiceServer interface {
 	UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error)
 	// GetTags получить тэги игр
 	GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error)
+	// GetGenres получить жанры игр
+	GetGenres(context.Context, *GetGenresRequest) (*GetGenresResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -156,6 +171,9 @@ func (UnimplementedGameServiceServer) UpdateGameStatus(context.Context, *UpdateG
 }
 func (UnimplementedGameServiceServer) GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTags not implemented")
+}
+func (UnimplementedGameServiceServer) GetGenres(context.Context, *GetGenresRequest) (*GetGenresResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGenres not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -286,6 +304,24 @@ func _GameService_GetTags_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_GetGenres_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGenresRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).GetGenres(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_GetGenres_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).GetGenres(ctx, req.(*GetGenresRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -316,6 +352,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTags",
 			Handler:    _GameService_GetTags_Handler,
+		},
+		{
+			MethodName: "GetGenres",
+			Handler:    _GameService_GetGenres_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -50,6 +50,13 @@ service GameService {
       get: "/v1/games/tags"
     };
   };
+
+  // GetGenres получить жанры игр
+  rpc GetGenres(GetGenresRequest) returns (GetGenresResponse) {
+    option (google.api.http) = {
+      get: "/v1/games/genres"
+    };
+  };
 }
 
 message GameRequest {
@@ -134,4 +141,10 @@ message GetTagsRequest {}
 
 message GetTagsResponse {
   repeated string tags = 1;
+}
+
+message GetGenresRequest {}
+
+message GetGenresResponse {
+  repeated string genres = 1;
 }
