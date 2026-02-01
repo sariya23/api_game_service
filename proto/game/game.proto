@@ -68,16 +68,6 @@ message GameRequest {
   repeated string tags = 6;
 }
 
-message DomainGame {
-  string title = 1;
-  repeated string genres = 2;
-  string description = 3;
-  google.type.Date release_date = 4;
-  string cover_image_url = 5;
-  repeated string tags = 6;
-  int64 ID = 7;
-}
-
 message AddGameRequest {
   GameRequest game = 1;
 }
@@ -91,7 +81,16 @@ message GetGameRequest {
 }
 
 message GetGameResponse {
-  DomainGame game = 1;
+  Game game = 1;
+  message Game {
+    string title = 1;
+    repeated string genres = 2;
+    string description = 3;
+    google.type.Date release_date = 4;
+    string cover_image_url = 5;
+    repeated string tags = 6;
+    int64 ID = 7;
+  }
 }
 
 message GameListRequest {

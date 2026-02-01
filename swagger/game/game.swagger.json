@@ -246,33 +246,7 @@
         }
       }
     },
-    "gameAddGameRequest": {
-      "type": "object",
-      "properties": {
-        "game": {
-          "$ref": "#/definitions/gameGameRequest"
-        }
-      }
-    },
-    "gameAddGameResponse": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "gameDeleteGameResponse": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "gameDomainGame": {
+    "GetGameResponseGame": {
       "type": "object",
       "properties": {
         "title": {
@@ -300,6 +274,32 @@
           }
         },
         "ID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameAddGameRequest": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "$ref": "#/definitions/gameGameRequest"
+        }
+      }
+    },
+    "gameAddGameResponse": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameDeleteGameResponse": {
+      "type": "object",
+      "properties": {
+        "gameId": {
           "type": "string",
           "format": "int64"
         }
@@ -393,7 +393,7 @@
       "type": "object",
       "properties": {
         "game": {
-          "$ref": "#/definitions/gameDomainGame"
+          "$ref": "#/definitions/GetGameResponseGame"
         }
       }
     },
