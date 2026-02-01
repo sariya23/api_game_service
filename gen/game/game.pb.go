@@ -1017,13 +1017,13 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0eGameStatusType\x12\t\n" +
 	"\x05DRAFT\x10\x00\x12\v\n" +
 	"\aPENDING\x10\x01\x12\v\n" +
-	"\aPUBLISH\x10\x022\x88\x05\n" +
+	"\aPUBLISH\x10\x022\x8f\x05\n" +
 	"\vGameService\x12L\n" +
 	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/games\x12S\n" +
 	"\aGetGame\x12\x14.game.GetGameRequest\x1a\x15.game.GetGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/games/{game_id}\x12T\n" +
-	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/games/list\x12\\\n" +
+	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/games/list\x12c\n" +
 	"\n" +
-	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/v1/games/{game_id}\x12z\n" +
+	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/v1/games/delete/{game_id}\x12z\n" +
 	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v1/games/update_game_status\x12N\n" +
 	"\aGetTags\x12\x14.game.GetTagsRequest\x1a\x15.game.GetTagsResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/games/tags\x12V\n" +
 	"\tGetGenres\x12\x16.game.GetGenresRequest\x1a\x17.game.GetGenresResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/games/genresB4Z2github.com/sariya23/api_game_service/gen/game;gameb\x06proto3"

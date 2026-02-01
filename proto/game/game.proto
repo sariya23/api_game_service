@@ -32,7 +32,7 @@ service GameService {
   // DeleteGame удалить игру
   rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
     option (google.api.http) = {
-      delete: "/v1/games/{game_id}"
+      delete: "/v1/games/delete/{game_id}"
     };
   };
 

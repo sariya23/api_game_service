@@ -49,6 +49,38 @@
         ]
       }
     },
+    "/v1/games/delete/{gameId}": {
+      "delete": {
+        "summary": "DeleteGame удалить игру",
+        "operationId": "GameService_DeleteGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameDeleteGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
     "/v1/games/genres": {
       "get": {
         "summary": "GetGenres получить жанры игр",
@@ -170,36 +202,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gameGetGameResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "gameId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "GameService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteGame удалить игру",
-        "operationId": "GameService_DeleteGame",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/gameDeleteGameResponse"
             }
           },
           "default": {
