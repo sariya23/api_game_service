@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/games-admin/delete/{gameId}": {
+      "delete": {
+        "summary": "DeleteGame удалить игру",
+        "operationId": "GameAdminService_DeleteGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameDeleteGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GameAdminService"
+        ]
+      }
+    },
     "/v1/games-admin/update_game_status": {
       "patch": {
         "summary": "UpdateGameStatus обновить статус игры",
@@ -60,6 +92,15 @@
       ],
       "default": "DRAFT",
       "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
+    },
+    "gameDeleteGameResponse": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "gameUpdateGameStatusRequest": {
       "type": "object",

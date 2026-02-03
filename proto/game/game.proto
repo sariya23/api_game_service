@@ -29,12 +29,6 @@ service GameService {
       body: "*"
     };
   };
-  // DeleteGame удалить игру
-  rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
-    option (google.api.http) = {
-      delete: "/v1/games/delete/{game_id}"
-    };
-  };
 
   // GetTags получить тэги игр
   rpc GetTags(GetTagsRequest) returns (GetTagsResponse) {
@@ -106,14 +100,6 @@ message GameListResponse {
     string cover_image_url = 5;
 
   }
-}
-
-message DeleteGameRequest {
-  int64 game_id = 1;
-}
-
-message DeleteGameResponse {
-  int64 game_id = 1;
 }
 
 message GetTagsRequest {}

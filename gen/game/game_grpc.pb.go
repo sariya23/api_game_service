@@ -19,12 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameService_AddGame_FullMethodName    = "/game.GameService/AddGame"
-	GameService_GetGame_FullMethodName    = "/game.GameService/GetGame"
-	GameService_GameList_FullMethodName   = "/game.GameService/GameList"
-	GameService_DeleteGame_FullMethodName = "/game.GameService/DeleteGame"
-	GameService_GetTags_FullMethodName    = "/game.GameService/GetTags"
-	GameService_GetGenres_FullMethodName  = "/game.GameService/GetGenres"
+	GameService_AddGame_FullMethodName   = "/game.GameService/AddGame"
+	GameService_GetGame_FullMethodName   = "/game.GameService/GetGame"
+	GameService_GameList_FullMethodName  = "/game.GameService/GameList"
+	GameService_GetTags_FullMethodName   = "/game.GameService/GetTags"
+	GameService_GetGenres_FullMethodName = "/game.GameService/GetGenres"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -37,8 +36,6 @@ type GameServiceClient interface {
 	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
 	// Получить список игр с укороченной информацией
 	GameList(ctx context.Context, in *GameListRequest, opts ...grpc.CallOption) (*GameListResponse, error)
-	// DeleteGame удалить игру
-	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
 	// GetTags получить тэги игр
 	GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error)
 	// GetGenres получить жанры игр
@@ -83,16 +80,6 @@ func (c *gameServiceClient) GameList(ctx context.Context, in *GameListRequest, o
 	return out, nil
 }
 
-func (c *gameServiceClient) DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteGameResponse)
-	err := c.cc.Invoke(ctx, GameService_DeleteGame_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *gameServiceClient) GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTagsResponse)
@@ -123,8 +110,6 @@ type GameServiceServer interface {
 	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
 	// Получить список игр с укороченной информацией
 	GameList(context.Context, *GameListRequest) (*GameListResponse, error)
-	// DeleteGame удалить игру
-	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
 	// GetTags получить тэги игр
 	GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error)
 	// GetGenres получить жанры игр
@@ -147,9 +132,6 @@ func (UnimplementedGameServiceServer) GetGame(context.Context, *GetGameRequest) 
 }
 func (UnimplementedGameServiceServer) GameList(context.Context, *GameListRequest) (*GameListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GameList not implemented")
-}
-func (UnimplementedGameServiceServer) DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method DeleteGame not implemented")
 }
 func (UnimplementedGameServiceServer) GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTags not implemented")
@@ -232,24 +214,6 @@ func _GameService_GameList_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GameService_DeleteGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteGameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GameServiceServer).DeleteGame(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GameService_DeleteGame_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).DeleteGame(ctx, req.(*DeleteGameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GameService_GetTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetTagsRequest)
 	if err := dec(in); err != nil {
@@ -304,10 +268,6 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GameList",
 			Handler:    _GameService_GameList_Handler,
-		},
-		{
-			MethodName: "DeleteGame",
-			Handler:    _GameService_DeleteGame_Handler,
 		},
 		{
 			MethodName: "GetTags",

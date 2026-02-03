@@ -403,94 +403,6 @@ func (x *GameListResponse) GetGames() []*GameListResponse_ShortGame {
 	return nil
 }
 
-type DeleteGameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteGameRequest) Reset() {
-	*x = DeleteGameRequest{}
-	mi := &file_game_game_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteGameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteGameRequest) ProtoMessage() {}
-
-func (x *DeleteGameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteGameRequest.ProtoReflect.Descriptor instead.
-func (*DeleteGameRequest) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *DeleteGameRequest) GetGameId() int64 {
-	if x != nil {
-		return x.GameId
-	}
-	return 0
-}
-
-type DeleteGameResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteGameResponse) Reset() {
-	*x = DeleteGameResponse{}
-	mi := &file_game_game_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteGameResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteGameResponse) ProtoMessage() {}
-
-func (x *DeleteGameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteGameResponse.ProtoReflect.Descriptor instead.
-func (*DeleteGameResponse) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *DeleteGameResponse) GetGameId() int64 {
-	if x != nil {
-		return x.GameId
-	}
-	return 0
-}
-
 type GetTagsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -499,7 +411,7 @@ type GetTagsRequest struct {
 
 func (x *GetTagsRequest) Reset() {
 	*x = GetTagsRequest{}
-	mi := &file_game_game_proto_msgTypes[9]
+	mi := &file_game_game_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -511,7 +423,7 @@ func (x *GetTagsRequest) String() string {
 func (*GetTagsRequest) ProtoMessage() {}
 
 func (x *GetTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[9]
+	mi := &file_game_game_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,7 +436,7 @@ func (x *GetTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTagsRequest.ProtoReflect.Descriptor instead.
 func (*GetTagsRequest) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{9}
+	return file_game_game_proto_rawDescGZIP(), []int{7}
 }
 
 type GetTagsResponse struct {
@@ -536,7 +448,7 @@ type GetTagsResponse struct {
 
 func (x *GetTagsResponse) Reset() {
 	*x = GetTagsResponse{}
-	mi := &file_game_game_proto_msgTypes[10]
+	mi := &file_game_game_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -548,7 +460,7 @@ func (x *GetTagsResponse) String() string {
 func (*GetTagsResponse) ProtoMessage() {}
 
 func (x *GetTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[10]
+	mi := &file_game_game_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -561,7 +473,7 @@ func (x *GetTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTagsResponse.ProtoReflect.Descriptor instead.
 func (*GetTagsResponse) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{10}
+	return file_game_game_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetTagsResponse) GetTags() []string {
@@ -579,7 +491,7 @@ type GetGenresRequest struct {
 
 func (x *GetGenresRequest) Reset() {
 	*x = GetGenresRequest{}
-	mi := &file_game_game_proto_msgTypes[11]
+	mi := &file_game_game_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -591,7 +503,7 @@ func (x *GetGenresRequest) String() string {
 func (*GetGenresRequest) ProtoMessage() {}
 
 func (x *GetGenresRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[11]
+	mi := &file_game_game_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -604,7 +516,7 @@ func (x *GetGenresRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGenresRequest.ProtoReflect.Descriptor instead.
 func (*GetGenresRequest) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{11}
+	return file_game_game_proto_rawDescGZIP(), []int{9}
 }
 
 type GetGenresResponse struct {
@@ -616,7 +528,7 @@ type GetGenresResponse struct {
 
 func (x *GetGenresResponse) Reset() {
 	*x = GetGenresResponse{}
-	mi := &file_game_game_proto_msgTypes[12]
+	mi := &file_game_game_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -628,7 +540,7 @@ func (x *GetGenresResponse) String() string {
 func (*GetGenresResponse) ProtoMessage() {}
 
 func (x *GetGenresResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[12]
+	mi := &file_game_game_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,7 +553,7 @@ func (x *GetGenresResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGenresResponse.ProtoReflect.Descriptor instead.
 func (*GetGenresResponse) Descriptor() ([]byte, []int) {
-	return file_game_game_proto_rawDescGZIP(), []int{12}
+	return file_game_game_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetGenresResponse) GetGenres() []string {
@@ -666,7 +578,7 @@ type GetGameResponse_Game struct {
 
 func (x *GetGameResponse_Game) Reset() {
 	*x = GetGameResponse_Game{}
-	mi := &file_game_game_proto_msgTypes[13]
+	mi := &file_game_game_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -678,7 +590,7 @@ func (x *GetGameResponse_Game) String() string {
 func (*GetGameResponse_Game) ProtoMessage() {}
 
 func (x *GetGameResponse_Game) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[13]
+	mi := &file_game_game_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -756,7 +668,7 @@ type GameListResponse_ShortGame struct {
 
 func (x *GameListResponse_ShortGame) Reset() {
 	*x = GameListResponse_ShortGame{}
-	mi := &file_game_game_proto_msgTypes[14]
+	mi := &file_game_game_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -768,7 +680,7 @@ func (x *GameListResponse_ShortGame) String() string {
 func (*GameListResponse_ShortGame) ProtoMessage() {}
 
 func (x *GameListResponse_ShortGame) ProtoReflect() protoreflect.Message {
-	mi := &file_game_game_proto_msgTypes[14]
+	mi := &file_game_game_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -861,23 +773,17 @@ const file_game_game_proto_rawDesc = "" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
 	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
-	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\",\n" +
-	"\x11DeleteGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"-\n" +
-	"\x12DeleteGameResponse\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"\x10\n" +
+	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\"\x10\n" +
 	"\x0eGetTagsRequest\"%\n" +
 	"\x0fGetTagsResponse\x12\x12\n" +
 	"\x04tags\x18\x01 \x03(\tR\x04tags\"\x12\n" +
 	"\x10GetGenresRequest\"+\n" +
 	"\x11GetGenresResponse\x12\x16\n" +
-	"\x06genres\x18\x01 \x03(\tR\x06genres2\x93\x04\n" +
+	"\x06genres\x18\x01 \x03(\tR\x06genres2\xae\x03\n" +
 	"\vGameService\x12L\n" +
 	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/games\x12S\n" +
 	"\aGetGame\x12\x14.game.GetGameRequest\x1a\x15.game.GetGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/games/{game_id}\x12T\n" +
-	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/games/list\x12c\n" +
-	"\n" +
-	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/v1/games/delete/{game_id}\x12N\n" +
+	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/games/list\x12N\n" +
 	"\aGetTags\x12\x14.game.GetTagsRequest\x1a\x15.game.GetTagsResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/games/tags\x12V\n" +
 	"\tGetGenres\x12\x16.game.GetGenresRequest\x1a\x17.game.GetGenresResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/games/genresB4Z2github.com/sariya23/api_game_service/gen/game;gameb\x06proto3"
 
@@ -893,7 +799,7 @@ func file_game_game_proto_rawDescGZIP() []byte {
 	return file_game_game_proto_rawDescData
 }
 
-var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_game_game_proto_goTypes = []any{
 	(*GameRequest)(nil),                // 0: game.GameRequest
 	(*AddGameRequest)(nil),             // 1: game.AddGameRequest
@@ -902,37 +808,33 @@ var file_game_game_proto_goTypes = []any{
 	(*GetGameResponse)(nil),            // 4: game.GetGameResponse
 	(*GameListRequest)(nil),            // 5: game.GameListRequest
 	(*GameListResponse)(nil),           // 6: game.GameListResponse
-	(*DeleteGameRequest)(nil),          // 7: game.DeleteGameRequest
-	(*DeleteGameResponse)(nil),         // 8: game.DeleteGameResponse
-	(*GetTagsRequest)(nil),             // 9: game.GetTagsRequest
-	(*GetTagsResponse)(nil),            // 10: game.GetTagsResponse
-	(*GetGenresRequest)(nil),           // 11: game.GetGenresRequest
-	(*GetGenresResponse)(nil),          // 12: game.GetGenresResponse
-	(*GetGameResponse_Game)(nil),       // 13: game.GetGameResponse.Game
-	(*GameListResponse_ShortGame)(nil), // 14: game.GameListResponse.ShortGame
-	(*date.Date)(nil),                  // 15: google.type.Date
+	(*GetTagsRequest)(nil),             // 7: game.GetTagsRequest
+	(*GetTagsResponse)(nil),            // 8: game.GetTagsResponse
+	(*GetGenresRequest)(nil),           // 9: game.GetGenresRequest
+	(*GetGenresResponse)(nil),          // 10: game.GetGenresResponse
+	(*GetGameResponse_Game)(nil),       // 11: game.GetGameResponse.Game
+	(*GameListResponse_ShortGame)(nil), // 12: game.GameListResponse.ShortGame
+	(*date.Date)(nil),                  // 13: google.type.Date
 }
 var file_game_game_proto_depIdxs = []int32{
-	15, // 0: game.GameRequest.release_date:type_name -> google.type.Date
+	13, // 0: game.GameRequest.release_date:type_name -> google.type.Date
 	0,  // 1: game.AddGameRequest.game:type_name -> game.GameRequest
-	13, // 2: game.GetGameResponse.game:type_name -> game.GetGameResponse.Game
-	14, // 3: game.GameListResponse.games:type_name -> game.GameListResponse.ShortGame
-	15, // 4: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
-	15, // 5: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
+	11, // 2: game.GetGameResponse.game:type_name -> game.GetGameResponse.Game
+	12, // 3: game.GameListResponse.games:type_name -> game.GameListResponse.ShortGame
+	13, // 4: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
+	13, // 5: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
 	1,  // 6: game.GameService.AddGame:input_type -> game.AddGameRequest
 	3,  // 7: game.GameService.GetGame:input_type -> game.GetGameRequest
 	5,  // 8: game.GameService.GameList:input_type -> game.GameListRequest
-	7,  // 9: game.GameService.DeleteGame:input_type -> game.DeleteGameRequest
-	9,  // 10: game.GameService.GetTags:input_type -> game.GetTagsRequest
-	11, // 11: game.GameService.GetGenres:input_type -> game.GetGenresRequest
-	2,  // 12: game.GameService.AddGame:output_type -> game.AddGameResponse
-	4,  // 13: game.GameService.GetGame:output_type -> game.GetGameResponse
-	6,  // 14: game.GameService.GameList:output_type -> game.GameListResponse
-	8,  // 15: game.GameService.DeleteGame:output_type -> game.DeleteGameResponse
-	10, // 16: game.GameService.GetTags:output_type -> game.GetTagsResponse
-	12, // 17: game.GameService.GetGenres:output_type -> game.GetGenresResponse
-	12, // [12:18] is the sub-list for method output_type
-	6,  // [6:12] is the sub-list for method input_type
+	7,  // 9: game.GameService.GetTags:input_type -> game.GetTagsRequest
+	9,  // 10: game.GameService.GetGenres:input_type -> game.GetGenresRequest
+	2,  // 11: game.GameService.AddGame:output_type -> game.AddGameResponse
+	4,  // 12: game.GameService.GetGame:output_type -> game.GetGameResponse
+	6,  // 13: game.GameService.GameList:output_type -> game.GameListResponse
+	8,  // 14: game.GameService.GetTags:output_type -> game.GetTagsResponse
+	10, // 15: game.GameService.GetGenres:output_type -> game.GetGenresResponse
+	11, // [11:16] is the sub-list for method output_type
+	6,  // [6:11] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
@@ -949,7 +851,7 @@ func file_game_game_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_game_proto_rawDesc), len(file_game_game_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -16,6 +16,13 @@ service GameAdminService {
       body: "*"
     };
   };
+
+  // DeleteGame удалить игру
+  rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
+    option (google.api.http) = {
+      delete: "/v1/games-admin/delete/{game_id}"
+    };
+  };
 }
 
 message UpdateGameStatusRequest {
@@ -24,3 +31,11 @@ message UpdateGameStatusRequest {
 }
 
 message UpdateGameStatusResponse {}
+
+message DeleteGameRequest {
+  int64 game_id = 1;
+}
+
+message DeleteGameResponse {
+  int64 game_id = 1;
+}

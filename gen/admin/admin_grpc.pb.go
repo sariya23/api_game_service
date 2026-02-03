@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	GameAdminService_UpdateGameStatus_FullMethodName = "/game.GameAdminService/UpdateGameStatus"
+	GameAdminService_DeleteGame_FullMethodName       = "/game.GameAdminService/DeleteGame"
 )
 
 // GameAdminServiceClient is the client API for GameAdminService service.
@@ -28,6 +29,8 @@ const (
 type GameAdminServiceClient interface {
 	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(ctx context.Context, in *UpdateGameStatusRequest, opts ...grpc.CallOption) (*UpdateGameStatusResponse, error)
+	// DeleteGame удалить игру
+	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
 }
 
 type gameAdminServiceClient struct {
@@ -48,12 +51,24 @@ func (c *gameAdminServiceClient) UpdateGameStatus(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *gameAdminServiceClient) DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteGameResponse)
+	err := c.cc.Invoke(ctx, GameAdminService_DeleteGame_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameAdminServiceServer is the server API for GameAdminService service.
 // All implementations must embed UnimplementedGameAdminServiceServer
 // for forward compatibility.
 type GameAdminServiceServer interface {
 	// UpdateGameStatus обновить статус игры
 	UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error)
+	// DeleteGame удалить игру
+	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
 	mustEmbedUnimplementedGameAdminServiceServer()
 }
 
@@ -66,6 +81,9 @@ type UnimplementedGameAdminServiceServer struct{}
 
 func (UnimplementedGameAdminServiceServer) UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateGameStatus not implemented")
+}
+func (UnimplementedGameAdminServiceServer) DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteGame not implemented")
 }
 func (UnimplementedGameAdminServiceServer) mustEmbedUnimplementedGameAdminServiceServer() {}
 func (UnimplementedGameAdminServiceServer) testEmbeddedByValue()                          {}
@@ -106,6 +124,24 @@ func _GameAdminService_UpdateGameStatus_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameAdminService_DeleteGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteGameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameAdminServiceServer).DeleteGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameAdminService_DeleteGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameAdminServiceServer).DeleteGame(ctx, req.(*DeleteGameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameAdminService_ServiceDesc is the grpc.ServiceDesc for GameAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -116,6 +152,10 @@ var GameAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateGameStatus",
 			Handler:    _GameAdminService_UpdateGameStatus_Handler,
+		},
+		{
+			MethodName: "DeleteGame",
+			Handler:    _GameAdminService_DeleteGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
