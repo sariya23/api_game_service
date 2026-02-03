@@ -160,39 +160,6 @@
         ]
       }
     },
-    "/v1/games/update_game_status": {
-      "patch": {
-        "summary": "UpdateGameStatus обновить статус игры",
-        "operationId": "GameService_UpdateGameStatus",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/gameUpdateGameStatusResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/gameUpdateGameStatusRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GameService"
-        ]
-      }
-    },
     "/v1/games/{gameId}": {
       "get": {
         "summary": "Получить игру с подробной информацией",
@@ -381,16 +348,6 @@
         }
       }
     },
-    "gameGameStatusType": {
-      "type": "string",
-      "enum": [
-        "DRAFT",
-        "PENDING",
-        "PUBLISH"
-      ],
-      "default": "DRAFT",
-      "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
-    },
     "gameGetGameResponse": {
       "type": "object",
       "properties": {
@@ -420,21 +377,6 @@
           }
         }
       }
-    },
-    "gameUpdateGameStatusRequest": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "newStatus": {
-          "$ref": "#/definitions/gameGameStatusType"
-        }
-      }
-    },
-    "gameUpdateGameStatusResponse": {
-      "type": "object"
     },
     "protobufAny": {
       "type": "object",
