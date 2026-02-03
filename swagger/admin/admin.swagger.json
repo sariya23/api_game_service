@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GameAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/games/update_game_status": {
+      "patch": {
+        "summary": "UpdateGameStatus обновить статус игры",
+        "operationId": "GameAdminService_UpdateGameStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameUpdateGameStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameUpdateGameStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gameGameStatusType": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PENDING",
+        "PUBLISH"
+      ],
+      "default": "DRAFT",
+      "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
+    },
+    "gameUpdateGameStatusRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "newStatus": {
+          "$ref": "#/definitions/gameGameStatusType"
+        }
+      }
+    },
+    "gameUpdateGameStatusResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

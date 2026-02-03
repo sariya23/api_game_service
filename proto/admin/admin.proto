@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package game;
+option go_package = "github.com/sariya23/api_game_service/gen/admin;gadmin";
+
+
+import "google/api/annotations.proto";
+import "google/api/date.proto";
+
+
+service GameAdminService {
+  // UpdateGameStatus обновить статус игры
+  rpc UpdateGameStatus(UpdateGameStatusRequest) returns (UpdateGameStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v1/games/update_game_status"
+      body: "*"
+    };
+  };
+}
+
+enum GameStatusType {
+  DRAFT = 0; // Игра в драфте
+  PENDING = 1; // Игра валидируется
+  PUBLISH = 2; // Игра опубликована
+}
+message UpdateGameStatusRequest {
+  int64 game_id = 1;
+  GameStatusType new_status = 2;
+}
+
+message UpdateGameStatusResponse {}
