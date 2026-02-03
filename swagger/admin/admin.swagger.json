@@ -51,7 +51,7 @@
     }
   },
   "definitions": {
-    "gameGameStatusType": {
+    "commonGameStatusType": {
       "type": "string",
       "enum": [
         "DRAFT",
@@ -69,7 +69,7 @@
           "format": "int64"
         },
         "newStatus": {
-          "$ref": "#/definitions/gameGameStatusType"
+          "$ref": "#/definitions/commonGameStatusType"
         }
       }
     },

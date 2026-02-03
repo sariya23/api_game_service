@@ -7,8 +7,8 @@
 package gadmin
 
 import (
+	common "github.com/sariya23/api_game_service/gen/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
-	_ "google.golang.org/genproto/googleapis/type/date"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,59 +23,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GameStatusType int32
-
-const (
-	GameStatusType_DRAFT   GameStatusType = 0 // Игра в драфте
-	GameStatusType_PENDING GameStatusType = 1 // Игра валидируется
-	GameStatusType_PUBLISH GameStatusType = 2 // Игра опубликована
-)
-
-// Enum value maps for GameStatusType.
-var (
-	GameStatusType_name = map[int32]string{
-		0: "DRAFT",
-		1: "PENDING",
-		2: "PUBLISH",
-	}
-	GameStatusType_value = map[string]int32{
-		"DRAFT":   0,
-		"PENDING": 1,
-		"PUBLISH": 2,
-	}
-)
-
-func (x GameStatusType) Enum() *GameStatusType {
-	p := new(GameStatusType)
-	*p = x
-	return p
-}
-
-func (x GameStatusType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (GameStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_admin_admin_proto_enumTypes[0].Descriptor()
-}
-
-func (GameStatusType) Type() protoreflect.EnumType {
-	return &file_admin_admin_proto_enumTypes[0]
-}
-
-func (x GameStatusType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use GameStatusType.Descriptor instead.
-func (GameStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_admin_admin_proto_rawDescGZIP(), []int{0}
-}
-
 type UpdateGameStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	NewStatus     GameStatusType         `protobuf:"varint,2,opt,name=new_status,json=newStatus,proto3,enum=game.GameStatusType" json:"new_status,omitempty"`
+	NewStatus     common.GameStatusType  `protobuf:"varint,2,opt,name=new_status,json=newStatus,proto3,enum=game.common.GameStatusType" json:"new_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,11 +68,11 @@ func (x *UpdateGameStatusRequest) GetGameId() int64 {
 	return 0
 }
 
-func (x *UpdateGameStatusRequest) GetNewStatus() GameStatusType {
+func (x *UpdateGameStatusRequest) GetNewStatus() common.GameStatusType {
 	if x != nil {
 		return x.NewStatus
 	}
-	return GameStatusType_DRAFT
+	return common.GameStatusType(0)
 }
 
 type UpdateGameStatusResponse struct {
@@ -164,16 +115,12 @@ var File_admin_admin_proto protoreflect.FileDescriptor
 
 const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x11admin/admin.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\"g\n" +
+	"\x11admin/admin.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x12common/enums.proto\"n\n" +
 	"\x17UpdateGameStatusRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x123\n" +
+	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x12:\n" +
 	"\n" +
-	"new_status\x18\x02 \x01(\x0e2\x14.game.GameStatusTypeR\tnewStatus\"\x1a\n" +
-	"\x18UpdateGameStatusResponse*5\n" +
-	"\x0eGameStatusType\x12\t\n" +
-	"\x05DRAFT\x10\x00\x12\v\n" +
-	"\aPENDING\x10\x01\x12\v\n" +
-	"\aPUBLISH\x10\x022\x8e\x01\n" +
+	"new_status\x18\x02 \x01(\x0e2\x1b.game.common.GameStatusTypeR\tnewStatus\"\x1a\n" +
+	"\x18UpdateGameStatusResponse2\x8e\x01\n" +
 	"\x10GameAdminService\x12z\n" +
 	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v1/games/update_game_statusB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
@@ -189,17 +136,16 @@ func file_admin_admin_proto_rawDescGZIP() []byte {
 	return file_admin_admin_proto_rawDescData
 }
 
-var file_admin_admin_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_admin_admin_proto_goTypes = []any{
-	(GameStatusType)(0),              // 0: game.GameStatusType
-	(*UpdateGameStatusRequest)(nil),  // 1: game.UpdateGameStatusRequest
-	(*UpdateGameStatusResponse)(nil), // 2: game.UpdateGameStatusResponse
+	(*UpdateGameStatusRequest)(nil),  // 0: game.UpdateGameStatusRequest
+	(*UpdateGameStatusResponse)(nil), // 1: game.UpdateGameStatusResponse
+	(common.GameStatusType)(0),       // 2: game.common.GameStatusType
 }
 var file_admin_admin_proto_depIdxs = []int32{
-	0, // 0: game.UpdateGameStatusRequest.new_status:type_name -> game.GameStatusType
-	1, // 1: game.GameAdminService.UpdateGameStatus:input_type -> game.UpdateGameStatusRequest
-	2, // 2: game.GameAdminService.UpdateGameStatus:output_type -> game.UpdateGameStatusResponse
+	2, // 0: game.UpdateGameStatusRequest.new_status:type_name -> game.common.GameStatusType
+	0, // 1: game.GameAdminService.UpdateGameStatus:input_type -> game.UpdateGameStatusRequest
+	1, // 2: game.GameAdminService.UpdateGameStatus:output_type -> game.UpdateGameStatusResponse
 	2, // [2:3] is the sub-list for method output_type
 	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -217,14 +163,13 @@ func file_admin_admin_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_admin_proto_rawDesc), len(file_admin_admin_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_admin_admin_proto_goTypes,
 		DependencyIndexes: file_admin_admin_proto_depIdxs,
-		EnumInfos:         file_admin_admin_proto_enumTypes,
 		MessageInfos:      file_admin_admin_proto_msgTypes,
 	}.Build()
 	File_admin_admin_proto = out.File

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package game.common;
+option go_package = "github.com/sariya23/api_game_service/gen/common;common";
+
+
+
+enum GameStatusType {
+  DRAFT = 0; // Игра в драфте
+  PENDING = 1; // Игра валидируется
+  PUBLISH = 2; // Игра опубликована
+}
