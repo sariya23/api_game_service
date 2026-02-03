@@ -120,9 +120,9 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x12:\n" +
 	"\n" +
 	"new_status\x18\x02 \x01(\x0e2\x1b.game.common.GameStatusTypeR\tnewStatus\"\x1a\n" +
-	"\x18UpdateGameStatusResponse2\x8e\x01\n" +
-	"\x10GameAdminService\x12z\n" +
-	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v1/games/update_game_statusB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
+	"\x18UpdateGameStatusResponse2\x95\x01\n" +
+	"\x10GameAdminService\x12\x80\x01\n" +
+	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_statusB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once

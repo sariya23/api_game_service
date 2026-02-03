@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/games/update_game_status": {
+    "/v1/games-admin/update_game_status": {
       "patch": {
         "summary": "UpdateGameStatus обновить статус игры",
         "operationId": "GameAdminService_UpdateGameStatus",

@@ -74,7 +74,7 @@ func RegisterGameAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games/update_game_status"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -132,7 +132,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games/update_game_status"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -149,7 +149,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_GameAdminService_UpdateGameStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "games", "update_game_status"}, ""))
+	pattern_GameAdminService_UpdateGameStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "games-admin", "update_game_status"}, ""))
 )
 
 var (
