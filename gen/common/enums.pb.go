@@ -24,22 +24,25 @@ const (
 type GameStatusType int32
 
 const (
-	GameStatusType_DRAFT   GameStatusType = 0 // Игра в драфте
-	GameStatusType_PENDING GameStatusType = 1 // Игра валидируется
-	GameStatusType_PUBLISH GameStatusType = 2 // Игра опубликована
+	GameStatusType_UNKNOWN GameStatusType = 0
+	GameStatusType_DRAFT   GameStatusType = 1 // Игра в драфте
+	GameStatusType_PENDING GameStatusType = 2 // Игра валидируется
+	GameStatusType_PUBLISH GameStatusType = 3 // Игра опубликована
 )
 
 // Enum value maps for GameStatusType.
 var (
 	GameStatusType_name = map[int32]string{
-		0: "DRAFT",
-		1: "PENDING",
-		2: "PUBLISH",
+		0: "UNKNOWN",
+		1: "DRAFT",
+		2: "PENDING",
+		3: "PUBLISH",
 	}
 	GameStatusType_value = map[string]int32{
-		"DRAFT":   0,
-		"PENDING": 1,
-		"PUBLISH": 2,
+		"UNKNOWN": 0,
+		"DRAFT":   1,
+		"PENDING": 2,
+		"PUBLISH": 3,
 	}
 )
 
@@ -74,11 +77,12 @@ var File_common_enums_proto protoreflect.FileDescriptor
 
 const file_common_enums_proto_rawDesc = "" +
 	"\n" +
-	"\x12common/enums.proto\x12\vgame.common*5\n" +
-	"\x0eGameStatusType\x12\t\n" +
-	"\x05DRAFT\x10\x00\x12\v\n" +
-	"\aPENDING\x10\x01\x12\v\n" +
-	"\aPUBLISH\x10\x02B8Z6github.com/sariya23/api_game_service/gen/common;commonb\x06proto3"
+	"\x12common/enums.proto\x12\vgame.common*B\n" +
+	"\x0eGameStatusType\x12\v\n" +
+	"\aUNKNOWN\x10\x00\x12\t\n" +
+	"\x05DRAFT\x10\x01\x12\v\n" +
+	"\aPENDING\x10\x02\x12\v\n" +
+	"\aPUBLISH\x10\x03B8Z6github.com/sariya23/api_game_service/gen/common;commonb\x06proto3"
 
 var (
 	file_common_enums_proto_rawDescOnce sync.Once
