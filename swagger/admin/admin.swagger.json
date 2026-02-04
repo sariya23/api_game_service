@@ -24,7 +24,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gameDeleteGameResponse"
+              "$ref": "#/definitions/gadminDeleteGameResponse"
             }
           },
           "default": {
@@ -56,7 +56,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gameGameListResponse"
+              "$ref": "#/definitions/gadminGameListResponse"
             }
           },
           "default": {
@@ -72,7 +72,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/gameGameListRequest"
+              "$ref": "#/definitions/gadminGameListRequest"
             }
           }
         ],
@@ -89,7 +89,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gameUpdateGameStatusResponse"
+              "$ref": "#/definitions/gadminUpdateGameStatusResponse"
             }
           },
           "default": {
@@ -105,7 +105,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/gameUpdateGameStatusRequest"
+              "$ref": "#/definitions/gadminUpdateGameStatusRequest"
             }
           }
         ],
@@ -150,7 +150,7 @@
       "default": "DRAFT",
       "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
     },
-    "gameDeleteGameResponse": {
+    "gadminDeleteGameResponse": {
       "type": "object",
       "properties": {
         "gameId": {
@@ -159,7 +159,7 @@
         }
       }
     },
-    "gameGameListRequest": {
+    "gadminGameListRequest": {
       "type": "object",
       "properties": {
         "offset": {
@@ -178,7 +178,7 @@
         }
       }
     },
-    "gameGameListResponse": {
+    "gadminGameListResponse": {
       "type": "object",
       "properties": {
         "games": {
@@ -190,7 +190,7 @@
         }
       }
     },
-    "gameUpdateGameStatusRequest": {
+    "gadminUpdateGameStatusRequest": {
       "type": "object",
       "properties": {
         "gameId": {
@@ -202,7 +202,7 @@
         }
       }
     },
-    "gameUpdateGameStatusResponse": {
+    "gadminUpdateGameStatusResponse": {
       "type": "object"
     },
     "protobufAny": {

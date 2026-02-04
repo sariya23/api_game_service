@@ -392,7 +392,7 @@ var File_admin_admin_proto protoreflect.FileDescriptor
 
 const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x11admin/admin.proto\x12\x04game\x1a\x15google/api/date.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x12common/enums.proto\"n\n" +
+	"\x11admin/admin.proto\x12\x06gadmin\x1a\x15google/api/date.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x12common/enums.proto\"n\n" +
 	"\x17UpdateGameStatusRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x12:\n" +
 	"\n" +
@@ -405,21 +405,21 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\x0fGameListRequest\x12\x16\n" +
 	"\x06offset\x18\x01 \x01(\rR\x06offset\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12C\n" +
-	"\x0fgame_status_ids\x18\x03 \x03(\x0e2\x1b.game.common.GameStatusTypeR\rgameStatusIds\"\xb2\x02\n" +
-	"\x10GameListResponse\x121\n" +
-	"\x05games\x18\x01 \x03(\v2\x1b.game.GameListResponse.GameR\x05games\x1a\xea\x01\n" +
+	"\x0fgame_status_ids\x18\x03 \x03(\x0e2\x1b.game.common.GameStatusTypeR\rgameStatusIds\"\xb4\x02\n" +
+	"\x10GameListResponse\x123\n" +
+	"\x05games\x18\x01 \x03(\v2\x1d.gadmin.GameListResponse.GameR\x05games\x1a\xea\x01\n" +
 	"\x04Game\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
 	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
 	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\x123\n" +
-	"\x06status\x18\x06 \x01(\x0e2\x1b.game.common.GameStatusTypeR\x06status2\xdc\x02\n" +
-	"\x10GameAdminService\x12\x80\x01\n" +
-	"\x10UpdateGameStatus\x12\x1d.game.UpdateGameStatusRequest\x1a\x1e.game.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12i\n" +
+	"\x06status\x18\x06 \x01(\x0e2\x1b.game.common.GameStatusTypeR\x06status2\xe8\x02\n" +
+	"\x10GameAdminService\x12\x84\x01\n" +
+	"\x10UpdateGameStatus\x12\x1f.gadmin.UpdateGameStatusRequest\x1a .gadmin.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12m\n" +
 	"\n" +
-	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\x18.game.DeleteGameResponse\"(\x82\xd3\xe4\x93\x02\"* /v1/games-admin/delete/{game_id}\x12Z\n" +
-	"\bGameList\x12\x15.game.GameListRequest\x1a\x16.game.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/listB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
+	"DeleteGame\x12\x19.gadmin.DeleteGameRequest\x1a\x1a.gadmin.DeleteGameResponse\"(\x82\xd3\xe4\x93\x02\"* /v1/games-admin/delete/{game_id}\x12^\n" +
+	"\bGameList\x12\x17.gadmin.GameListRequest\x1a\x18.gadmin.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/listB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once
@@ -435,28 +435,28 @@ func file_admin_admin_proto_rawDescGZIP() []byte {
 
 var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_admin_admin_proto_goTypes = []any{
-	(*UpdateGameStatusRequest)(nil),  // 0: game.UpdateGameStatusRequest
-	(*UpdateGameStatusResponse)(nil), // 1: game.UpdateGameStatusResponse
-	(*DeleteGameRequest)(nil),        // 2: game.DeleteGameRequest
-	(*DeleteGameResponse)(nil),       // 3: game.DeleteGameResponse
-	(*GameListRequest)(nil),          // 4: game.GameListRequest
-	(*GameListResponse)(nil),         // 5: game.GameListResponse
-	(*GameListResponse_Game)(nil),    // 6: game.GameListResponse.Game
+	(*UpdateGameStatusRequest)(nil),  // 0: gadmin.UpdateGameStatusRequest
+	(*UpdateGameStatusResponse)(nil), // 1: gadmin.UpdateGameStatusResponse
+	(*DeleteGameRequest)(nil),        // 2: gadmin.DeleteGameRequest
+	(*DeleteGameResponse)(nil),       // 3: gadmin.DeleteGameResponse
+	(*GameListRequest)(nil),          // 4: gadmin.GameListRequest
+	(*GameListResponse)(nil),         // 5: gadmin.GameListResponse
+	(*GameListResponse_Game)(nil),    // 6: gadmin.GameListResponse.Game
 	(common.GameStatusType)(0),       // 7: game.common.GameStatusType
 	(*date.Date)(nil),                // 8: google.type.Date
 }
 var file_admin_admin_proto_depIdxs = []int32{
-	7, // 0: game.UpdateGameStatusRequest.new_status:type_name -> game.common.GameStatusType
-	7, // 1: game.GameListRequest.game_status_ids:type_name -> game.common.GameStatusType
-	6, // 2: game.GameListResponse.games:type_name -> game.GameListResponse.Game
-	8, // 3: game.GameListResponse.Game.release_date:type_name -> google.type.Date
-	7, // 4: game.GameListResponse.Game.status:type_name -> game.common.GameStatusType
-	0, // 5: game.GameAdminService.UpdateGameStatus:input_type -> game.UpdateGameStatusRequest
-	2, // 6: game.GameAdminService.DeleteGame:input_type -> game.DeleteGameRequest
-	4, // 7: game.GameAdminService.GameList:input_type -> game.GameListRequest
-	1, // 8: game.GameAdminService.UpdateGameStatus:output_type -> game.UpdateGameStatusResponse
-	3, // 9: game.GameAdminService.DeleteGame:output_type -> game.DeleteGameResponse
-	5, // 10: game.GameAdminService.GameList:output_type -> game.GameListResponse
+	7, // 0: gadmin.UpdateGameStatusRequest.new_status:type_name -> game.common.GameStatusType
+	7, // 1: gadmin.GameListRequest.game_status_ids:type_name -> game.common.GameStatusType
+	6, // 2: gadmin.GameListResponse.games:type_name -> gadmin.GameListResponse.Game
+	8, // 3: gadmin.GameListResponse.Game.release_date:type_name -> google.type.Date
+	7, // 4: gadmin.GameListResponse.Game.status:type_name -> game.common.GameStatusType
+	0, // 5: gadmin.GameAdminService.UpdateGameStatus:input_type -> gadmin.UpdateGameStatusRequest
+	2, // 6: gadmin.GameAdminService.DeleteGame:input_type -> gadmin.DeleteGameRequest
+	4, // 7: gadmin.GameAdminService.GameList:input_type -> gadmin.GameListRequest
+	1, // 8: gadmin.GameAdminService.UpdateGameStatus:output_type -> gadmin.UpdateGameStatusResponse
+	3, // 9: gadmin.GameAdminService.DeleteGame:output_type -> gadmin.DeleteGameResponse
+	5, // 10: gadmin.GameAdminService.GameList:output_type -> gadmin.GameListResponse
 	8, // [8:11] is the sub-list for method output_type
 	5, // [5:8] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

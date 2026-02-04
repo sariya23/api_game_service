@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameAdminService_UpdateGameStatus_FullMethodName = "/game.GameAdminService/UpdateGameStatus"
-	GameAdminService_DeleteGame_FullMethodName       = "/game.GameAdminService/DeleteGame"
-	GameAdminService_GameList_FullMethodName         = "/game.GameAdminService/GameList"
+	GameAdminService_UpdateGameStatus_FullMethodName = "/gadmin.GameAdminService/UpdateGameStatus"
+	GameAdminService_DeleteGame_FullMethodName       = "/gadmin.GameAdminService/DeleteGame"
+	GameAdminService_GameList_FullMethodName         = "/gadmin.GameAdminService/GameList"
 )
 
 // GameAdminServiceClient is the client API for GameAdminService service.
@@ -182,7 +182,7 @@ func _GameAdminService_GameList_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GameAdminService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "game.GameAdminService",
+	ServiceName: "gadmin.GameAdminService",
 	HandlerType: (*GameAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -140,7 +140,7 @@ func RegisterGameAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gadmin.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -160,7 +160,7 @@ func RegisterGameAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameAdminService/DeleteGame", runtime.WithHTTPPathPattern("/v1/games-admin/delete/{game_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gadmin.GameAdminService/DeleteGame", runtime.WithHTTPPathPattern("/v1/games-admin/delete/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -180,7 +180,7 @@ func RegisterGameAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game.GameAdminService/GameList", runtime.WithHTTPPathPattern("/v1/games-admin/list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gadmin.GameAdminService/GameList", runtime.WithHTTPPathPattern("/v1/games-admin/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -238,7 +238,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gadmin.GameAdminService/UpdateGameStatus", runtime.WithHTTPPathPattern("/v1/games-admin/update_game_status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -255,7 +255,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameAdminService/DeleteGame", runtime.WithHTTPPathPattern("/v1/games-admin/delete/{game_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gadmin.GameAdminService/DeleteGame", runtime.WithHTTPPathPattern("/v1/games-admin/delete/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -272,7 +272,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game.GameAdminService/GameList", runtime.WithHTTPPathPattern("/v1/games-admin/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gadmin.GameAdminService/GameList", runtime.WithHTTPPathPattern("/v1/games-admin/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

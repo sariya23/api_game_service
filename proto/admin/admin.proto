@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package game;
+package gadmin;
 option go_package = "github.com/sariya23/api_game_service/gen/admin;gadmin";
 
 
@@ -34,7 +34,7 @@ service GameAdminService {
 
 message UpdateGameStatusRequest {
   int64 game_id = 1;
-  common.GameStatusType new_status = 2;
+  game.common.GameStatusType new_status = 2;
 }
 
 message UpdateGameStatusResponse {}
@@ -50,7 +50,7 @@ message DeleteGameResponse {
 message GameListRequest {
   uint32 offset = 1;
   uint32 limit = 2;
-  repeated common.GameStatusType game_status_ids = 3;
+  repeated game.common.GameStatusType game_status_ids = 3;
 }
 
 message GameListResponse {
@@ -61,6 +61,6 @@ message GameListResponse {
     string description = 3;
     google.type.Date release_date = 4;
     string cover_image_url = 5;
-    common.GameStatusType status = 6;
+    game.common.GameStatusType status = 6;
   }
 }
