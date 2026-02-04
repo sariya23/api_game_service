@@ -4,6 +4,7 @@ package game;
 option go_package = "github.com/sariya23/api_game_service/gen/admin;gadmin";
 
 
+import "google/api/date.proto";
 import "google/api/annotations.proto";
 import "common/enums.proto";
 
@@ -16,11 +17,17 @@ service GameAdminService {
       body: "*"
     };
   };
-
   // DeleteGame удалить игру
   rpc DeleteGame(DeleteGameRequest) returns (DeleteGameResponse) {
     option (google.api.http) = {
       delete: "/v1/games-admin/delete/{game_id}"
+    };
+  };
+  // GameList отображает список игр для модерации
+  rpc GameList(GameListRequest) returns (GameListResponse) {
+    option (google.api.http) = {
+      post: "/v1/games-admin/list"
+      body: "*"
     };
   };
 }
@@ -38,4 +45,21 @@ message DeleteGameRequest {
 
 message DeleteGameResponse {
   int64 game_id = 1;
+}
+
+message GameListRequest {
+  uint32 offset = 1;
+  uint32 limit = 2;
+  repeated common.GameStatusType game_status_ids = 3;
+}
+
+message GameListResponse {
+  repeated Game games = 1;
+  message Game {
+    int64 game_id = 1;
+    string title = 2;
+    string description = 3;
+    google.type.Date release_date = 4;
+    string cover_image_url = 5;
+  }
 }

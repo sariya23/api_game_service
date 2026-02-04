@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	GameAdminService_UpdateGameStatus_FullMethodName = "/game.GameAdminService/UpdateGameStatus"
 	GameAdminService_DeleteGame_FullMethodName       = "/game.GameAdminService/DeleteGame"
+	GameAdminService_GameList_FullMethodName         = "/game.GameAdminService/GameList"
 )
 
 // GameAdminServiceClient is the client API for GameAdminService service.
@@ -31,6 +32,8 @@ type GameAdminServiceClient interface {
 	UpdateGameStatus(ctx context.Context, in *UpdateGameStatusRequest, opts ...grpc.CallOption) (*UpdateGameStatusResponse, error)
 	// DeleteGame удалить игру
 	DeleteGame(ctx context.Context, in *DeleteGameRequest, opts ...grpc.CallOption) (*DeleteGameResponse, error)
+	// GameList отображает список игр для модерации
+	GameList(ctx context.Context, in *GameListRequest, opts ...grpc.CallOption) (*GameListResponse, error)
 }
 
 type gameAdminServiceClient struct {
@@ -61,6 +64,16 @@ func (c *gameAdminServiceClient) DeleteGame(ctx context.Context, in *DeleteGameR
 	return out, nil
 }
 
+func (c *gameAdminServiceClient) GameList(ctx context.Context, in *GameListRequest, opts ...grpc.CallOption) (*GameListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GameListResponse)
+	err := c.cc.Invoke(ctx, GameAdminService_GameList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameAdminServiceServer is the server API for GameAdminService service.
 // All implementations must embed UnimplementedGameAdminServiceServer
 // for forward compatibility.
@@ -69,6 +82,8 @@ type GameAdminServiceServer interface {
 	UpdateGameStatus(context.Context, *UpdateGameStatusRequest) (*UpdateGameStatusResponse, error)
 	// DeleteGame удалить игру
 	DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error)
+	// GameList отображает список игр для модерации
+	GameList(context.Context, *GameListRequest) (*GameListResponse, error)
 	mustEmbedUnimplementedGameAdminServiceServer()
 }
 
@@ -84,6 +99,9 @@ func (UnimplementedGameAdminServiceServer) UpdateGameStatus(context.Context, *Up
 }
 func (UnimplementedGameAdminServiceServer) DeleteGame(context.Context, *DeleteGameRequest) (*DeleteGameResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteGame not implemented")
+}
+func (UnimplementedGameAdminServiceServer) GameList(context.Context, *GameListRequest) (*GameListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GameList not implemented")
 }
 func (UnimplementedGameAdminServiceServer) mustEmbedUnimplementedGameAdminServiceServer() {}
 func (UnimplementedGameAdminServiceServer) testEmbeddedByValue()                          {}
@@ -142,6 +160,24 @@ func _GameAdminService_DeleteGame_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameAdminService_GameList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GameListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameAdminServiceServer).GameList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameAdminService_GameList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameAdminServiceServer).GameList(ctx, req.(*GameListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameAdminService_ServiceDesc is the grpc.ServiceDesc for GameAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +192,10 @@ var GameAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteGame",
 			Handler:    _GameAdminService_DeleteGame_Handler,
+		},
+		{
+			MethodName: "GameList",
+			Handler:    _GameAdminService_GameList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -48,6 +48,39 @@
         ]
       }
     },
+    "/v1/games-admin/list": {
+      "post": {
+        "summary": "GameList отображает список игр для модерации",
+        "operationId": "GameAdminService_GameList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGameListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGameListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameAdminService"
+        ]
+      }
+    },
     "/v1/games-admin/update_game_status": {
       "patch": {
         "summary": "UpdateGameStatus обновить статус игры",
@@ -83,6 +116,27 @@
     }
   },
   "definitions": {
+    "GameListResponseGame": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        }
+      }
+    },
     "commonGameStatusType": {
       "type": "string",
       "enum": [
@@ -99,6 +153,37 @@
         "gameId": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "gameGameListRequest": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameStatusIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonGameStatusType"
+          }
+        }
+      }
+    },
+    "gameGameListResponse": {
+      "type": "object",
+      "properties": {
+        "games": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GameListResponseGame"
+          }
         }
       }
     },
@@ -144,6 +229,28 @@
           }
         }
       }
+    },
+    "typeDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without\na year."
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a\nmonth and day."
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0\nto specify a year by itself or a year and month where the day isn't\nsignificant."
+        }
+      },
+      "description": "* A full date, with non-zero year, month, and day values\n* A month and day value, with a zero year, such as an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, such as a credit card expiration\ndate\n\nRelated types are [google.type.TimeOfDay][google.type.TimeOfDay] and\n`google.protobuf.Timestamp`.",
+      "title": "Represents a whole or partial calendar date, such as a birthday. The time of\nday and time zone are either specified elsewhere or are insignificant. The\ndate is relative to the Gregorian Calendar. This can represent one of the\nfollowing:"
     }
   }
 }
