@@ -165,7 +165,7 @@
     "GameStatusesResponseGameStatus": {
       "type": "object",
       "properties": {
-        "int": {
+        "id": {
           "type": "string",
           "format": "int64"
         },

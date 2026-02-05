@@ -470,7 +470,7 @@ func (x *GameListResponse_Game) GetStatus() common.GameStatusType {
 
 type GameStatusesResponse_GameStatus struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Int           int64                  `protobuf:"varint,1,opt,name=int,proto3" json:"int,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -506,9 +506,9 @@ func (*GameStatusesResponse_GameStatus) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{7, 0}
 }
 
-func (x *GameStatusesResponse_GameStatus) GetInt() int64 {
+func (x *GameStatusesResponse_GameStatus) GetId() int64 {
 	if x != nil {
-		return x.Int
+		return x.Id
 	}
 	return 0
 }
@@ -547,12 +547,12 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
 	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\x123\n" +
 	"\x06status\x18\x06 \x01(\x0e2\x1b.game.common.GameStatusTypeR\x06status\"\x15\n" +
-	"\x13GameStatusesRequest\"\x8f\x01\n" +
+	"\x13GameStatusesRequest\"\x8d\x01\n" +
 	"\x14GameStatusesResponse\x12C\n" +
-	"\bstatuses\x18\x01 \x03(\v2'.gadmin.GameStatusesResponse.GameStatusR\bstatuses\x1a2\n" +
+	"\bstatuses\x18\x01 \x03(\v2'.gadmin.GameStatusesResponse.GameStatusR\bstatuses\x1a0\n" +
 	"\n" +
-	"GameStatus\x12\x10\n" +
-	"\x03int\x18\x01 \x01(\x03R\x03int\x12\x12\n" +
+	"GameStatus\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name2\xda\x03\n" +
 	"\x10GameAdminService\x12\x84\x01\n" +
 	"\x10UpdateGameStatus\x12\x1f.gadmin.UpdateGameStatusRequest\x1a .gadmin.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12m\n" +
