@@ -30,6 +30,12 @@ service GameAdminService {
       body: "*"
     };
   };
+
+  rpc GameStatuses(GameStatusesRequest) returns (GameStatusesResponse) {
+    option (google.api.http) = {
+      get: "/v1/games-admin/game-statuses"
+    };
+  }
 }
 
 message UpdateGameStatusRequest {
@@ -62,5 +68,15 @@ message GameListResponse {
     google.type.Date release_date = 4;
     string cover_image_url = 5;
     game.common.GameStatusType status = 6;
+  }
+}
+
+message GameStatusesRequest {}
+
+message GameStatusesResponse {
+  repeated GameStatus statuses = 1;
+  message GameStatus {
+    int64 int = 1;
+    string name = 2;
   }
 }

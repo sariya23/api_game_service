@@ -48,6 +48,28 @@
         ]
       }
     },
+    "/v1/games-admin/game-statuses": {
+      "get": {
+        "operationId": "GameAdminService_GameStatuses",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gadminGameStatusesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "GameAdminService"
+        ]
+      }
+    },
     "/v1/games-admin/list": {
       "post": {
         "summary": "GameList отображает список игр для модерации",
@@ -140,6 +162,18 @@
         }
       }
     },
+    "GameStatusesResponseGameStatus": {
+      "type": "object",
+      "properties": {
+        "int": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "commonGameStatusType": {
       "type": "string",
       "enum": [
@@ -186,6 +220,18 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/GameListResponseGame"
+          }
+        }
+      }
+    },
+    "gadminGameStatusesResponse": {
+      "type": "object",
+      "properties": {
+        "statuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GameStatusesResponseGameStatus"
           }
         }
       }
