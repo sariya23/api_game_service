@@ -51,6 +51,7 @@
     },
     "/v1/games/creator": {
       "post": {
+        "summary": "GameListByCreator отдает список игр, фильтруя по создателю",
         "operationId": "GameService_GameListByCreator",
         "responses": {
           "200": {
@@ -129,6 +130,39 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/gameGameListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
+    "/v1/games/my": {
+      "post": {
+        "summary": "GameListMy отдает список игр, которые создал пользователь",
+        "operationId": "GameService_GameListMy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGameListMyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGameListMyRequest"
             }
           }
         ],
@@ -227,37 +261,6 @@
     }
   },
   "definitions": {
-    "GameListByCreatorRequestPagination": {
-      "type": "object",
-      "properties": {
-        "limit": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "GameListByCreatorResponseGames": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "title": {
-          "type": "string"
-        },
-        "coverImageUrl": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/commonGameStatusType"
-        }
-      }
-    },
     "GameListResponseShortGame": {
       "type": "object",
       "properties": {
@@ -309,14 +312,24 @@
     "gameGameListByCreatorRequest": {
       "type": "object",
       "properties": {
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/commonGameStatusType"
-          }
+        "creatorId": {
+          "type": "string"
         },
         "pagination": {
-          "$ref": "#/definitions/GameListByCreatorRequestPagination"
+          "$ref": "#/definitions/gameGameListByCreatorRequestPagination"
+        }
+      }
+    },
+    "gameGameListByCreatorRequestPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
@@ -327,12 +340,85 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GameListByCreatorResponseGames"
+            "$ref": "#/definitions/gameGameListByCreatorResponseGames"
           }
         },
         "total": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "gameGameListByCreatorResponseGames": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "gameGameListMyRequest": {
+      "type": "object",
+      "properties": {
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonGameStatusType"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/gameGameListMyRequestPagination"
+        }
+      }
+    },
+    "gameGameListMyRequestPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "gameGameListMyResponse": {
+      "type": "object",
+      "properties": {
+        "games": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/gameGameListMyResponseGames"
+          }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameGameListMyResponseGames": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "coverImageUrl": {
+          "type": "string"
         }
       }
     },

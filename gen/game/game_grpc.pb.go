@@ -26,6 +26,7 @@ const (
 	GameService_GetGenres_FullMethodName         = "/game.GameService/GetGenres"
 	GameService_UpdateGame_FullMethodName        = "/game.GameService/UpdateGame"
 	GameService_GameListByCreator_FullMethodName = "/game.GameService/GameListByCreator"
+	GameService_GameListMy_FullMethodName        = "/game.GameService/GameListMy"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -44,7 +45,10 @@ type GameServiceClient interface {
 	GetGenres(ctx context.Context, in *GetGenresRequest, opts ...grpc.CallOption) (*GetGenresResponse, error)
 	// UpdateGame обновить игру
 	UpdateGame(ctx context.Context, in *UpdateGameRequest, opts ...grpc.CallOption) (*UpdateGameResponse, error)
+	// GameListByCreator отдает список игр, фильтруя по создателю
 	GameListByCreator(ctx context.Context, in *GameListByCreatorRequest, opts ...grpc.CallOption) (*GameListByCreatorResponse, error)
+	// GameListMy отдает список игр, которые создал пользователь
+	GameListMy(ctx context.Context, in *GameListMyRequest, opts ...grpc.CallOption) (*GameListMyResponse, error)
 }
 
 type gameServiceClient struct {
@@ -125,6 +129,16 @@ func (c *gameServiceClient) GameListByCreator(ctx context.Context, in *GameListB
 	return out, nil
 }
 
+func (c *gameServiceClient) GameListMy(ctx context.Context, in *GameListMyRequest, opts ...grpc.CallOption) (*GameListMyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GameListMyResponse)
+	err := c.cc.Invoke(ctx, GameService_GameListMy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -141,7 +155,10 @@ type GameServiceServer interface {
 	GetGenres(context.Context, *GetGenresRequest) (*GetGenresResponse, error)
 	// UpdateGame обновить игру
 	UpdateGame(context.Context, *UpdateGameRequest) (*UpdateGameResponse, error)
+	// GameListByCreator отдает список игр, фильтруя по создателю
 	GameListByCreator(context.Context, *GameListByCreatorRequest) (*GameListByCreatorResponse, error)
+	// GameListMy отдает список игр, которые создал пользователь
+	GameListMy(context.Context, *GameListMyRequest) (*GameListMyResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -172,6 +189,9 @@ func (UnimplementedGameServiceServer) UpdateGame(context.Context, *UpdateGameReq
 }
 func (UnimplementedGameServiceServer) GameListByCreator(context.Context, *GameListByCreatorRequest) (*GameListByCreatorResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GameListByCreator not implemented")
+}
+func (UnimplementedGameServiceServer) GameListMy(context.Context, *GameListMyRequest) (*GameListMyResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GameListMy not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -320,6 +340,24 @@ func _GameService_GameListByCreator_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_GameListMy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GameListMyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).GameListMy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_GameListMy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).GameListMy(ctx, req.(*GameListMyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -354,6 +392,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GameListByCreator",
 			Handler:    _GameService_GameListByCreator_Handler,
+		},
+		{
+			MethodName: "GameListMy",
+			Handler:    _GameService_GameListMy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
