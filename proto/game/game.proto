@@ -6,6 +6,7 @@ option go_package = "github.com/sariya23/api_game_service/gen/game;game";
 
 import "google/api/annotations.proto";
 import "google/api/date.proto";
+import "common/enums.proto";
 
 
 service GameService {
@@ -51,6 +52,12 @@ service GameService {
       body: "*"
     };
   };
+  rpc GameListByCreator(GameListByCreatorRequest) returns (GameListByCreatorResponse) {
+    option (google.api.http) = {
+      post: "/v1/games/creator"
+      body: "*"
+    };
+  }
 }
 
 message GameRequest {
@@ -106,7 +113,6 @@ message GameListResponse {
     string description = 3;
     google.type.Date release_date = 4;
     string cover_image_url = 5;
-
   }
 }
 
@@ -136,3 +142,23 @@ message UpdateGameRequest {
 }
 
 message UpdateGameResponse {}
+
+message GameListByCreatorRequest {
+  repeated game.common.GameStatusType status = 1;
+  Pagination pagination = 2;
+  message Pagination {
+    uint32 limit = 2;
+    uint32 offset = 3;
+  }
+}
+
+message GameListByCreatorResponse {
+    repeated Games games = 1;
+    message Games {
+      int64 game_id = 1;
+      string title = 2;
+      string cover_image_url = 5;
+      game.common.GameStatusType status = 6;
+    }
+    int64 total = 2;
+}

@@ -49,6 +49,38 @@
         ]
       }
     },
+    "/v1/games/creator": {
+      "post": {
+        "operationId": "GameService_GameListByCreator",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGameListByCreatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGameListByCreatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
     "/v1/games/genres": {
       "get": {
         "summary": "GetGenres получить жанры игр",
@@ -195,6 +227,37 @@
     }
   },
   "definitions": {
+    "GameListByCreatorRequestPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "GameListByCreatorResponseGames": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/commonGameStatusType"
+        }
+      }
+    },
     "GameListResponseShortGame": {
       "type": "object",
       "properties": {
@@ -216,6 +279,16 @@
         }
       }
     },
+    "commonGameStatusType": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PENDING",
+        "PUBLISH"
+      ],
+      "default": "DRAFT",
+      "title": "- DRAFT: Игра в драфте\n - PENDING: Игра валидируется\n - PUBLISH: Игра опубликована"
+    },
     "gameAddGameRequest": {
       "type": "object",
       "properties": {
@@ -228,6 +301,36 @@
       "type": "object",
       "properties": {
         "gameId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "gameGameListByCreatorRequest": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonGameStatusType"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/GameListByCreatorRequestPagination"
+        }
+      }
+    },
+    "gameGameListByCreatorResponse": {
+      "type": "object",
+      "properties": {
+        "games": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GameListByCreatorResponseGames"
+          }
+        },
+        "total": {
           "type": "string",
           "format": "int64"
         }
