@@ -564,13 +564,9 @@ func (x *GetGenresResponse) GetGenres() []string {
 }
 
 type UpdateGameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Genres        []string               `protobuf:"bytes,2,rep,name=genres,proto3" json:"genres,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	ReleaseDate   *date.Date             `protobuf:"bytes,4,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	CoverImage    []byte                 `protobuf:"bytes,5,opt,name=cover_image,json=coverImage,proto3" json:"cover_image,omitempty"`
-	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	GameId        int64                   `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	Game          *UpdateGameRequest_Game `protobuf:"bytes,2,opt,name=game,proto3" json:"game,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -605,44 +601,16 @@ func (*UpdateGameRequest) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *UpdateGameRequest) GetTitle() string {
+func (x *UpdateGameRequest) GetGameId() int64 {
 	if x != nil {
-		return x.Title
+		return x.GameId
 	}
-	return ""
+	return 0
 }
 
-func (x *UpdateGameRequest) GetGenres() []string {
+func (x *UpdateGameRequest) GetGame() *UpdateGameRequest_Game {
 	if x != nil {
-		return x.Genres
-	}
-	return nil
-}
-
-func (x *UpdateGameRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *UpdateGameRequest) GetReleaseDate() *date.Date {
-	if x != nil {
-		return x.ReleaseDate
-	}
-	return nil
-}
-
-func (x *UpdateGameRequest) GetCoverImage() []byte {
-	if x != nil {
-		return x.CoverImage
-	}
-	return nil
-}
-
-func (x *UpdateGameRequest) GetTags() []string {
-	if x != nil {
-		return x.Tags
+		return x.Game
 	}
 	return nil
 }
@@ -851,6 +819,90 @@ func (x *GameListResponse_ShortGame) GetCoverImageUrl() string {
 	return ""
 }
 
+type UpdateGameRequest_Game struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Genres        []string               `protobuf:"bytes,2,rep,name=genres,proto3" json:"genres,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	ReleaseDate   *date.Date             `protobuf:"bytes,4,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
+	CoverImage    []byte                 `protobuf:"bytes,5,opt,name=cover_image,json=coverImage,proto3" json:"cover_image,omitempty"`
+	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateGameRequest_Game) Reset() {
+	*x = UpdateGameRequest_Game{}
+	mi := &file_game_game_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateGameRequest_Game) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateGameRequest_Game) ProtoMessage() {}
+
+func (x *UpdateGameRequest_Game) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateGameRequest_Game.ProtoReflect.Descriptor instead.
+func (*UpdateGameRequest_Game) Descriptor() ([]byte, []int) {
+	return file_game_game_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *UpdateGameRequest_Game) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateGameRequest_Game) GetGenres() []string {
+	if x != nil {
+		return x.Genres
+	}
+	return nil
+}
+
+func (x *UpdateGameRequest_Game) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateGameRequest_Game) GetReleaseDate() *date.Date {
+	if x != nil {
+		return x.ReleaseDate
+	}
+	return nil
+}
+
+func (x *UpdateGameRequest_Game) GetCoverImage() []byte {
+	if x != nil {
+		return x.CoverImage
+	}
+	return nil
+}
+
+func (x *UpdateGameRequest_Game) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
 var File_game_game_proto protoreflect.FileDescriptor
 
 const file_game_game_proto_rawDesc = "" +
@@ -899,8 +951,11 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04tags\x18\x01 \x03(\tR\x04tags\"\x12\n" +
 	"\x10GetGenresRequest\"+\n" +
 	"\x11GetGenresResponse\x12\x16\n" +
-	"\x06genres\x18\x01 \x03(\tR\x06genres\"\xce\x01\n" +
-	"\x11UpdateGameRequest\x12\x14\n" +
+	"\x06genres\x18\x01 \x03(\tR\x06genres\"\xa2\x02\n" +
+	"\x11UpdateGameRequest\x12\x17\n" +
+	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x120\n" +
+	"\x04game\x18\x02 \x01(\v2\x1c.game.UpdateGameRequest.GameR\x04game\x1a\xc1\x01\n" +
+	"\x04Game\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
 	"\x06genres\x18\x02 \x03(\tR\x06genres\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
@@ -930,7 +985,7 @@ func file_game_game_proto_rawDescGZIP() []byte {
 	return file_game_game_proto_rawDescData
 }
 
-var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_game_game_proto_goTypes = []any{
 	(*GameRequest)(nil),                // 0: game.GameRequest
 	(*AddGameRequest)(nil),             // 1: game.AddGameRequest
@@ -947,33 +1002,35 @@ var file_game_game_proto_goTypes = []any{
 	(*UpdateGameResponse)(nil),         // 12: game.UpdateGameResponse
 	(*GetGameResponse_Game)(nil),       // 13: game.GetGameResponse.Game
 	(*GameListResponse_ShortGame)(nil), // 14: game.GameListResponse.ShortGame
-	(*date.Date)(nil),                  // 15: google.type.Date
+	(*UpdateGameRequest_Game)(nil),     // 15: game.UpdateGameRequest.Game
+	(*date.Date)(nil),                  // 16: google.type.Date
 }
 var file_game_game_proto_depIdxs = []int32{
-	15, // 0: game.GameRequest.release_date:type_name -> google.type.Date
+	16, // 0: game.GameRequest.release_date:type_name -> google.type.Date
 	0,  // 1: game.AddGameRequest.game:type_name -> game.GameRequest
 	13, // 2: game.GetGameResponse.game:type_name -> game.GetGameResponse.Game
 	14, // 3: game.GameListResponse.games:type_name -> game.GameListResponse.ShortGame
-	15, // 4: game.UpdateGameRequest.release_date:type_name -> google.type.Date
-	15, // 5: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
-	15, // 6: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
-	1,  // 7: game.GameService.AddGame:input_type -> game.AddGameRequest
-	3,  // 8: game.GameService.GetGame:input_type -> game.GetGameRequest
-	5,  // 9: game.GameService.GameList:input_type -> game.GameListRequest
-	7,  // 10: game.GameService.GetTags:input_type -> game.GetTagsRequest
-	9,  // 11: game.GameService.GetGenres:input_type -> game.GetGenresRequest
-	11, // 12: game.GameService.UpdateGame:input_type -> game.UpdateGameRequest
-	2,  // 13: game.GameService.AddGame:output_type -> game.AddGameResponse
-	4,  // 14: game.GameService.GetGame:output_type -> game.GetGameResponse
-	6,  // 15: game.GameService.GameList:output_type -> game.GameListResponse
-	8,  // 16: game.GameService.GetTags:output_type -> game.GetTagsResponse
-	10, // 17: game.GameService.GetGenres:output_type -> game.GetGenresResponse
-	12, // 18: game.GameService.UpdateGame:output_type -> game.UpdateGameResponse
-	13, // [13:19] is the sub-list for method output_type
-	7,  // [7:13] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	15, // 4: game.UpdateGameRequest.game:type_name -> game.UpdateGameRequest.Game
+	16, // 5: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
+	16, // 6: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
+	16, // 7: game.UpdateGameRequest.Game.release_date:type_name -> google.type.Date
+	1,  // 8: game.GameService.AddGame:input_type -> game.AddGameRequest
+	3,  // 9: game.GameService.GetGame:input_type -> game.GetGameRequest
+	5,  // 10: game.GameService.GameList:input_type -> game.GameListRequest
+	7,  // 11: game.GameService.GetTags:input_type -> game.GetTagsRequest
+	9,  // 12: game.GameService.GetGenres:input_type -> game.GetGenresRequest
+	11, // 13: game.GameService.UpdateGame:input_type -> game.UpdateGameRequest
+	2,  // 14: game.GameService.AddGame:output_type -> game.AddGameResponse
+	4,  // 15: game.GameService.GetGame:output_type -> game.GetGameResponse
+	6,  // 16: game.GameService.GameList:output_type -> game.GameListResponse
+	8,  // 17: game.GameService.GetTags:output_type -> game.GetTagsResponse
+	10, // 18: game.GameService.GetGenres:output_type -> game.GetGenresResponse
+	12, // 19: game.GameService.UpdateGame:output_type -> game.UpdateGameResponse
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_game_game_proto_init() }
@@ -987,7 +1044,7 @@ func file_game_game_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_game_proto_rawDesc), len(file_game_game_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

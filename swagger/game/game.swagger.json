@@ -216,39 +216,6 @@
         }
       }
     },
-    "GetGameResponseGame": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "genres": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "description": {
-          "type": "string"
-        },
-        "releaseDate": {
-          "$ref": "#/definitions/typeDate"
-        },
-        "coverImageUrl": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "ID": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
     "gameAddGameRequest": {
       "type": "object",
       "properties": {
@@ -344,7 +311,40 @@
       "type": "object",
       "properties": {
         "game": {
-          "$ref": "#/definitions/GetGameResponseGame"
+          "$ref": "#/definitions/gameGetGameResponseGame"
+        }
+      }
+    },
+    "gameGetGameResponseGame": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ID": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -371,6 +371,18 @@
       }
     },
     "gameUpdateGameRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "game": {
+          "$ref": "#/definitions/gameUpdateGameRequestGame"
+        }
+      }
+    },
+    "gameUpdateGameRequestGame": {
       "type": "object",
       "properties": {
         "title": {

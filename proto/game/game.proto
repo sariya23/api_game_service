@@ -123,12 +123,16 @@ message GetGenresResponse {
 }
 
 message UpdateGameRequest {
-  string title = 1;
-  repeated string genres = 2;
-  string description = 3;
-  google.type.Date release_date = 4;
-  bytes cover_image = 5;
-  repeated string tags = 6;
+  int64 game_id = 1;
+  Game game = 2;
+  message Game {
+    string title = 1;
+    repeated string genres = 2;
+    string description = 3;
+    google.type.Date release_date = 4;
+    bytes cover_image = 5;
+    repeated string tags = 6;
+  }
 }
 
 message UpdateGameResponse {}
