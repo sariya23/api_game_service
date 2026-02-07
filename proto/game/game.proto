@@ -43,6 +43,14 @@ service GameService {
       get: "/v1/games/genres"
     };
   };
+
+  // UpdateGame обновить игру
+  rpc UpdateGame(UpdateGameRequest) returns (UpdateGameResponse) {
+    option (google.api.http) = {
+      put: "/v1/games/update"
+      body: "*"
+    };
+  };
 }
 
 message GameRequest {
@@ -113,3 +121,14 @@ message GetGenresRequest {}
 message GetGenresResponse {
   repeated string genres = 1;
 }
+
+message UpdateGameRequest {
+  string title = 1;
+  repeated string genres = 2;
+  string description = 3;
+  google.type.Date release_date = 4;
+  bytes cover_image = 5;
+  repeated string tags = 6;
+}
+
+message UpdateGameResponse {}

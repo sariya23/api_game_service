@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameService_AddGame_FullMethodName   = "/game.GameService/AddGame"
-	GameService_GetGame_FullMethodName   = "/game.GameService/GetGame"
-	GameService_GameList_FullMethodName  = "/game.GameService/GameList"
-	GameService_GetTags_FullMethodName   = "/game.GameService/GetTags"
-	GameService_GetGenres_FullMethodName = "/game.GameService/GetGenres"
+	GameService_AddGame_FullMethodName    = "/game.GameService/AddGame"
+	GameService_GetGame_FullMethodName    = "/game.GameService/GetGame"
+	GameService_GameList_FullMethodName   = "/game.GameService/GameList"
+	GameService_GetTags_FullMethodName    = "/game.GameService/GetTags"
+	GameService_GetGenres_FullMethodName  = "/game.GameService/GetGenres"
+	GameService_UpdateGame_FullMethodName = "/game.GameService/UpdateGame"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -40,6 +41,8 @@ type GameServiceClient interface {
 	GetTags(ctx context.Context, in *GetTagsRequest, opts ...grpc.CallOption) (*GetTagsResponse, error)
 	// GetGenres получить жанры игр
 	GetGenres(ctx context.Context, in *GetGenresRequest, opts ...grpc.CallOption) (*GetGenresResponse, error)
+	// UpdateGame обновить игру
+	UpdateGame(ctx context.Context, in *UpdateGameRequest, opts ...grpc.CallOption) (*UpdateGameResponse, error)
 }
 
 type gameServiceClient struct {
@@ -100,6 +103,16 @@ func (c *gameServiceClient) GetGenres(ctx context.Context, in *GetGenresRequest,
 	return out, nil
 }
 
+func (c *gameServiceClient) UpdateGame(ctx context.Context, in *UpdateGameRequest, opts ...grpc.CallOption) (*UpdateGameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateGameResponse)
+	err := c.cc.Invoke(ctx, GameService_UpdateGame_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -114,6 +127,8 @@ type GameServiceServer interface {
 	GetTags(context.Context, *GetTagsRequest) (*GetTagsResponse, error)
 	// GetGenres получить жанры игр
 	GetGenres(context.Context, *GetGenresRequest) (*GetGenresResponse, error)
+	// UpdateGame обновить игру
+	UpdateGame(context.Context, *UpdateGameRequest) (*UpdateGameResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -138,6 +153,9 @@ func (UnimplementedGameServiceServer) GetTags(context.Context, *GetTagsRequest) 
 }
 func (UnimplementedGameServiceServer) GetGenres(context.Context, *GetGenresRequest) (*GetGenresResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGenres not implemented")
+}
+func (UnimplementedGameServiceServer) UpdateGame(context.Context, *UpdateGameRequest) (*UpdateGameResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateGame not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -250,6 +268,24 @@ func _GameService_GetGenres_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_UpdateGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).UpdateGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_UpdateGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).UpdateGame(ctx, req.(*UpdateGameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -276,6 +312,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGenres",
 			Handler:    _GameService_GetGenres_Handler,
+		},
+		{
+			MethodName: "UpdateGame",
+			Handler:    _GameService_UpdateGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
