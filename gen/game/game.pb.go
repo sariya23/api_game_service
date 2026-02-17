@@ -869,6 +869,7 @@ type GetGameResponse_Game struct {
 	CoverImageUrl string                 `protobuf:"bytes,5,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
 	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
 	ID            int64                  `protobuf:"varint,7,opt,name=ID,proto3" json:"ID,omitempty"`
+	CreatorId     string                 `protobuf:"bytes,8,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -950,6 +951,13 @@ func (x *GetGameResponse_Game) GetID() int64 {
 		return x.ID
 	}
 	return 0
+}
+
+func (x *GetGameResponse_Game) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
 }
 
 type GameListResponse_ShortGame struct {
@@ -1354,9 +1362,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x0fAddGameResponse\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\")\n" +
 	"\x0eGetGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"\x9c\x02\n" +
+	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"\xbb\x02\n" +
 	"\x0fGetGameResponse\x12.\n" +
-	"\x04game\x18\x01 \x01(\v2\x1a.game.GetGameResponse.GameR\x04game\x1a\xd8\x01\n" +
+	"\x04game\x18\x01 \x01(\v2\x1a.game.GetGameResponse.GameR\x04game\x1a\xf7\x01\n" +
 	"\x04Game\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
 	"\x06genres\x18\x02 \x03(\tR\x06genres\x12 \n" +
@@ -1364,7 +1372,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
 	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\x12\x12\n" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
-	"\x02ID\x18\a \x01(\x03R\x02ID\"\x8d\x01\n" +
+	"\x02ID\x18\a \x01(\x03R\x02ID\x12\x1d\n" +
+	"\n" +
+	"creator_id\x18\b \x01(\tR\tcreatorId\"\x8d\x01\n" +
 	"\x0fGameListRequest\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06genres\x18\x03 \x03(\tR\x06genres\x12\x12\n" +
