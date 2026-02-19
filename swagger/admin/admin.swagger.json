@@ -136,7 +136,7 @@
         ]
       }
     },
-    "/v1/games/{gameId}": {
+    "/v1/games-admin/{gameId}": {
       "get": {
         "summary": "Получить игру с подробной информацией",
         "operationId": "GameAdminService_GetGame",

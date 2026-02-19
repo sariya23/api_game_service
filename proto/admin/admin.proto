@@ -39,7 +39,7 @@ service GameAdminService {
   // Получить игру с подробной информацией
   rpc GetGame(GetGameRequest) returns (GetGameResponse) {
     option (google.api.http) = {
-      get: "/v1/games/{game_id}"
+      get: "/v1/games-admin/{game_id}"
     };
   };
 }

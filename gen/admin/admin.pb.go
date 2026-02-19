@@ -755,14 +755,14 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
 	"\x02ID\x18\a \x01(\x03R\x02ID\x12\x1d\n" +
 	"\n" +
-	"creator_id\x18\b \x01(\tR\tcreatorId2\xb3\x04\n" +
+	"creator_id\x18\b \x01(\tR\tcreatorId2\xb9\x04\n" +
 	"\x10GameAdminService\x12\x84\x01\n" +
 	"\x10UpdateGameStatus\x12\x1f.gadmin.UpdateGameStatusRequest\x1a .gadmin.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12m\n" +
 	"\n" +
 	"DeleteGame\x12\x19.gadmin.DeleteGameRequest\x1a\x1a.gadmin.DeleteGameResponse\"(\x82\xd3\xe4\x93\x02\"* /v1/games-admin/delete/{game_id}\x12^\n" +
 	"\bGameList\x12\x17.gadmin.GameListRequest\x1a\x18.gadmin.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/list\x12p\n" +
-	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statuses\x12W\n" +
-	"\aGetGame\x12\x16.gadmin.GetGameRequest\x1a\x17.gadmin.GetGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/games/{game_id}B7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
+	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statuses\x12]\n" +
+	"\aGetGame\x12\x16.gadmin.GetGameRequest\x1a\x17.gadmin.GetGameResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/games-admin/{game_id}B7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once

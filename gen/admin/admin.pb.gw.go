@@ -280,7 +280,7 @@ func RegisterGameAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gadmin.GameAdminService/GetGame", runtime.WithHTTPPathPattern("/v1/games/{game_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gadmin.GameAdminService/GetGame", runtime.WithHTTPPathPattern("/v1/games-admin/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -406,7 +406,7 @@ func RegisterGameAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gadmin.GameAdminService/GetGame", runtime.WithHTTPPathPattern("/v1/games/{game_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gadmin.GameAdminService/GetGame", runtime.WithHTTPPathPattern("/v1/games-admin/{game_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -427,7 +427,7 @@ var (
 	pattern_GameAdminService_DeleteGame_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "games-admin", "delete", "game_id"}, ""))
 	pattern_GameAdminService_GameList_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "games-admin", "list"}, ""))
 	pattern_GameAdminService_GameStatuses_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "games-admin", "game-statuses"}, ""))
-	pattern_GameAdminService_GetGame_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "games", "game_id"}, ""))
+	pattern_GameAdminService_GetGame_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "games-admin", "game_id"}, ""))
 )
 
 var (
