@@ -36,6 +36,12 @@ service GameAdminService {
       get: "/v1/games-admin/game-statuses"
     };
   }
+  // Получить игру с подробной информацией
+  rpc GetGame(GetGameRequest) returns (GetGameResponse) {
+    option (google.api.http) = {
+      get: "/v1/games/{game_id}"
+    };
+  };
 }
 
 message UpdateGameStatusRequest {
@@ -78,5 +84,23 @@ message GameStatusesResponse {
   message GameStatus {
     int64 id = 1;
     string name = 2;
+  }
+}
+
+message GetGameRequest {
+  int64 game_id = 1;
+}
+
+message GetGameResponse {
+  Game game = 1;
+  message Game {
+    string title = 1;
+    repeated string genres = 2;
+    string description = 3;
+    google.type.Date release_date = 4;
+    string cover_image_url = 5;
+    repeated string tags = 6;
+    int64 ID = 7;
+    string creator_id = 8;
   }
 }

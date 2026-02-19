@@ -135,33 +135,41 @@
           "GameAdminService"
         ]
       }
+    },
+    "/v1/games/{gameId}": {
+      "get": {
+        "summary": "Получить игру с подробной информацией",
+        "operationId": "GameAdminService_GetGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gadminGetGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GameAdminService"
+        ]
+      }
     }
   },
   "definitions": {
-    "GameListResponseGame": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "releaseDate": {
-          "$ref": "#/definitions/typeDate"
-        },
-        "coverImageUrl": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/commonGameStatusType"
-        }
-      }
-    },
     "GameStatusesResponseGameStatus": {
       "type": "object",
       "properties": {
@@ -219,8 +227,32 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GameListResponseGame"
+            "$ref": "#/definitions/gadminGameListResponseGame"
           }
+        }
+      }
+    },
+    "gadminGameListResponseGame": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/commonGameStatusType"
         }
       }
     },
@@ -233,6 +265,50 @@
             "type": "object",
             "$ref": "#/definitions/GameStatusesResponseGameStatus"
           }
+        }
+      }
+    },
+    "gadminGetGameResponse": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "$ref": "#/definitions/gadminGetGameResponseGame"
+        }
+      }
+    },
+    "gadminGetGameResponseGame": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "creatorId": {
+          "type": "string"
         }
       }
     },

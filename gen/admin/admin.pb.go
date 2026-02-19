@@ -384,6 +384,94 @@ func (x *GameStatusesResponse) GetStatuses() []*GameStatusesResponse_GameStatus 
 	return nil
 }
 
+type GetGameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGameRequest) Reset() {
+	*x = GetGameRequest{}
+	mi := &file_admin_admin_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGameRequest) ProtoMessage() {}
+
+func (x *GetGameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_admin_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGameRequest.ProtoReflect.Descriptor instead.
+func (*GetGameRequest) Descriptor() ([]byte, []int) {
+	return file_admin_admin_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetGameRequest) GetGameId() int64 {
+	if x != nil {
+		return x.GameId
+	}
+	return 0
+}
+
+type GetGameResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Game          *GetGameResponse_Game  `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGameResponse) Reset() {
+	*x = GetGameResponse{}
+	mi := &file_admin_admin_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGameResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGameResponse) ProtoMessage() {}
+
+func (x *GetGameResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_admin_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGameResponse.ProtoReflect.Descriptor instead.
+func (*GetGameResponse) Descriptor() ([]byte, []int) {
+	return file_admin_admin_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetGameResponse) GetGame() *GetGameResponse_Game {
+	if x != nil {
+		return x.Game
+	}
+	return nil
+}
+
 type GameListResponse_Game struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
@@ -398,7 +486,7 @@ type GameListResponse_Game struct {
 
 func (x *GameListResponse_Game) Reset() {
 	*x = GameListResponse_Game{}
-	mi := &file_admin_admin_proto_msgTypes[8]
+	mi := &file_admin_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -410,7 +498,7 @@ func (x *GameListResponse_Game) String() string {
 func (*GameListResponse_Game) ProtoMessage() {}
 
 func (x *GameListResponse_Game) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_admin_proto_msgTypes[8]
+	mi := &file_admin_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -478,7 +566,7 @@ type GameStatusesResponse_GameStatus struct {
 
 func (x *GameStatusesResponse_GameStatus) Reset() {
 	*x = GameStatusesResponse_GameStatus{}
-	mi := &file_admin_admin_proto_msgTypes[9]
+	mi := &file_admin_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -490,7 +578,7 @@ func (x *GameStatusesResponse_GameStatus) String() string {
 func (*GameStatusesResponse_GameStatus) ProtoMessage() {}
 
 func (x *GameStatusesResponse_GameStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_admin_proto_msgTypes[9]
+	mi := &file_admin_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -516,6 +604,106 @@ func (x *GameStatusesResponse_GameStatus) GetId() int64 {
 func (x *GameStatusesResponse_GameStatus) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+type GetGameResponse_Game struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Genres        []string               `protobuf:"bytes,2,rep,name=genres,proto3" json:"genres,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	ReleaseDate   *date.Date             `protobuf:"bytes,4,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
+	CoverImageUrl string                 `protobuf:"bytes,5,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
+	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	ID            int64                  `protobuf:"varint,7,opt,name=ID,proto3" json:"ID,omitempty"`
+	CreatorId     string                 `protobuf:"bytes,8,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGameResponse_Game) Reset() {
+	*x = GetGameResponse_Game{}
+	mi := &file_admin_admin_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGameResponse_Game) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGameResponse_Game) ProtoMessage() {}
+
+func (x *GetGameResponse_Game) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_admin_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGameResponse_Game.ProtoReflect.Descriptor instead.
+func (*GetGameResponse_Game) Descriptor() ([]byte, []int) {
+	return file_admin_admin_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *GetGameResponse_Game) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetGameResponse_Game) GetGenres() []string {
+	if x != nil {
+		return x.Genres
+	}
+	return nil
+}
+
+func (x *GetGameResponse_Game) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *GetGameResponse_Game) GetReleaseDate() *date.Date {
+	if x != nil {
+		return x.ReleaseDate
+	}
+	return nil
+}
+
+func (x *GetGameResponse_Game) GetCoverImageUrl() string {
+	if x != nil {
+		return x.CoverImageUrl
+	}
+	return ""
+}
+
+func (x *GetGameResponse_Game) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *GetGameResponse_Game) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *GetGameResponse_Game) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
 	}
 	return ""
 }
@@ -553,13 +741,28 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
 	"GameStatus\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2\xda\x03\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\")\n" +
+	"\x0eGetGameRequest\x12\x17\n" +
+	"\agame_id\x18\x01 \x01(\x03R\x06gameId\"\xbd\x02\n" +
+	"\x0fGetGameResponse\x120\n" +
+	"\x04game\x18\x01 \x01(\v2\x1c.gadmin.GetGameResponse.GameR\x04game\x1a\xf7\x01\n" +
+	"\x04Game\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
+	"\x06genres\x18\x02 \x03(\tR\x06genres\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
+	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12&\n" +
+	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\x12\x12\n" +
+	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
+	"\x02ID\x18\a \x01(\x03R\x02ID\x12\x1d\n" +
+	"\n" +
+	"creator_id\x18\b \x01(\tR\tcreatorId2\xb3\x04\n" +
 	"\x10GameAdminService\x12\x84\x01\n" +
 	"\x10UpdateGameStatus\x12\x1f.gadmin.UpdateGameStatusRequest\x1a .gadmin.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12m\n" +
 	"\n" +
 	"DeleteGame\x12\x19.gadmin.DeleteGameRequest\x1a\x1a.gadmin.DeleteGameResponse\"(\x82\xd3\xe4\x93\x02\"* /v1/games-admin/delete/{game_id}\x12^\n" +
 	"\bGameList\x12\x17.gadmin.GameListRequest\x1a\x18.gadmin.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/list\x12p\n" +
-	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statusesB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
+	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statuses\x12W\n" +
+	"\aGetGame\x12\x16.gadmin.GetGameRequest\x1a\x17.gadmin.GetGameResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/games/{game_id}B7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once
@@ -573,7 +776,7 @@ func file_admin_admin_proto_rawDescGZIP() []byte {
 	return file_admin_admin_proto_rawDescData
 }
 
-var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_admin_admin_proto_goTypes = []any{
 	(*UpdateGameStatusRequest)(nil),         // 0: gadmin.UpdateGameStatusRequest
 	(*UpdateGameStatusResponse)(nil),        // 1: gadmin.UpdateGameStatusResponse
@@ -583,31 +786,38 @@ var file_admin_admin_proto_goTypes = []any{
 	(*GameListResponse)(nil),                // 5: gadmin.GameListResponse
 	(*GameStatusesRequest)(nil),             // 6: gadmin.GameStatusesRequest
 	(*GameStatusesResponse)(nil),            // 7: gadmin.GameStatusesResponse
-	(*GameListResponse_Game)(nil),           // 8: gadmin.GameListResponse.Game
-	(*GameStatusesResponse_GameStatus)(nil), // 9: gadmin.GameStatusesResponse.GameStatus
-	(common.GameStatusType)(0),              // 10: game.common.GameStatusType
-	(*date.Date)(nil),                       // 11: google.type.Date
+	(*GetGameRequest)(nil),                  // 8: gadmin.GetGameRequest
+	(*GetGameResponse)(nil),                 // 9: gadmin.GetGameResponse
+	(*GameListResponse_Game)(nil),           // 10: gadmin.GameListResponse.Game
+	(*GameStatusesResponse_GameStatus)(nil), // 11: gadmin.GameStatusesResponse.GameStatus
+	(*GetGameResponse_Game)(nil),            // 12: gadmin.GetGameResponse.Game
+	(common.GameStatusType)(0),              // 13: game.common.GameStatusType
+	(*date.Date)(nil),                       // 14: google.type.Date
 }
 var file_admin_admin_proto_depIdxs = []int32{
-	10, // 0: gadmin.UpdateGameStatusRequest.new_status:type_name -> game.common.GameStatusType
-	10, // 1: gadmin.GameListRequest.game_status_ids:type_name -> game.common.GameStatusType
-	8,  // 2: gadmin.GameListResponse.games:type_name -> gadmin.GameListResponse.Game
-	9,  // 3: gadmin.GameStatusesResponse.statuses:type_name -> gadmin.GameStatusesResponse.GameStatus
-	11, // 4: gadmin.GameListResponse.Game.release_date:type_name -> google.type.Date
-	10, // 5: gadmin.GameListResponse.Game.status:type_name -> game.common.GameStatusType
-	0,  // 6: gadmin.GameAdminService.UpdateGameStatus:input_type -> gadmin.UpdateGameStatusRequest
-	2,  // 7: gadmin.GameAdminService.DeleteGame:input_type -> gadmin.DeleteGameRequest
-	4,  // 8: gadmin.GameAdminService.GameList:input_type -> gadmin.GameListRequest
-	6,  // 9: gadmin.GameAdminService.GameStatuses:input_type -> gadmin.GameStatusesRequest
-	1,  // 10: gadmin.GameAdminService.UpdateGameStatus:output_type -> gadmin.UpdateGameStatusResponse
-	3,  // 11: gadmin.GameAdminService.DeleteGame:output_type -> gadmin.DeleteGameResponse
-	5,  // 12: gadmin.GameAdminService.GameList:output_type -> gadmin.GameListResponse
-	7,  // 13: gadmin.GameAdminService.GameStatuses:output_type -> gadmin.GameStatusesResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	13, // 0: gadmin.UpdateGameStatusRequest.new_status:type_name -> game.common.GameStatusType
+	13, // 1: gadmin.GameListRequest.game_status_ids:type_name -> game.common.GameStatusType
+	10, // 2: gadmin.GameListResponse.games:type_name -> gadmin.GameListResponse.Game
+	11, // 3: gadmin.GameStatusesResponse.statuses:type_name -> gadmin.GameStatusesResponse.GameStatus
+	12, // 4: gadmin.GetGameResponse.game:type_name -> gadmin.GetGameResponse.Game
+	14, // 5: gadmin.GameListResponse.Game.release_date:type_name -> google.type.Date
+	13, // 6: gadmin.GameListResponse.Game.status:type_name -> game.common.GameStatusType
+	14, // 7: gadmin.GetGameResponse.Game.release_date:type_name -> google.type.Date
+	0,  // 8: gadmin.GameAdminService.UpdateGameStatus:input_type -> gadmin.UpdateGameStatusRequest
+	2,  // 9: gadmin.GameAdminService.DeleteGame:input_type -> gadmin.DeleteGameRequest
+	4,  // 10: gadmin.GameAdminService.GameList:input_type -> gadmin.GameListRequest
+	6,  // 11: gadmin.GameAdminService.GameStatuses:input_type -> gadmin.GameStatusesRequest
+	8,  // 12: gadmin.GameAdminService.GetGame:input_type -> gadmin.GetGameRequest
+	1,  // 13: gadmin.GameAdminService.UpdateGameStatus:output_type -> gadmin.UpdateGameStatusResponse
+	3,  // 14: gadmin.GameAdminService.DeleteGame:output_type -> gadmin.DeleteGameResponse
+	5,  // 15: gadmin.GameAdminService.GameList:output_type -> gadmin.GameListResponse
+	7,  // 16: gadmin.GameAdminService.GameStatuses:output_type -> gadmin.GameStatusesResponse
+	9,  // 17: gadmin.GameAdminService.GetGame:output_type -> gadmin.GetGameResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_admin_admin_proto_init() }
@@ -621,7 +831,7 @@ func file_admin_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_admin_proto_rawDesc), len(file_admin_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

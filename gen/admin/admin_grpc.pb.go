@@ -23,6 +23,7 @@ const (
 	GameAdminService_DeleteGame_FullMethodName       = "/gadmin.GameAdminService/DeleteGame"
 	GameAdminService_GameList_FullMethodName         = "/gadmin.GameAdminService/GameList"
 	GameAdminService_GameStatuses_FullMethodName     = "/gadmin.GameAdminService/GameStatuses"
+	GameAdminService_GetGame_FullMethodName          = "/gadmin.GameAdminService/GetGame"
 )
 
 // GameAdminServiceClient is the client API for GameAdminService service.
@@ -36,6 +37,8 @@ type GameAdminServiceClient interface {
 	// GameList отображает список игр для модерации
 	GameList(ctx context.Context, in *GameListRequest, opts ...grpc.CallOption) (*GameListResponse, error)
 	GameStatuses(ctx context.Context, in *GameStatusesRequest, opts ...grpc.CallOption) (*GameStatusesResponse, error)
+	// Получить игру с подробной информацией
+	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
 }
 
 type gameAdminServiceClient struct {
@@ -86,6 +89,16 @@ func (c *gameAdminServiceClient) GameStatuses(ctx context.Context, in *GameStatu
 	return out, nil
 }
 
+func (c *gameAdminServiceClient) GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGameResponse)
+	err := c.cc.Invoke(ctx, GameAdminService_GetGame_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameAdminServiceServer is the server API for GameAdminService service.
 // All implementations must embed UnimplementedGameAdminServiceServer
 // for forward compatibility.
@@ -97,6 +110,8 @@ type GameAdminServiceServer interface {
 	// GameList отображает список игр для модерации
 	GameList(context.Context, *GameListRequest) (*GameListResponse, error)
 	GameStatuses(context.Context, *GameStatusesRequest) (*GameStatusesResponse, error)
+	// Получить игру с подробной информацией
+	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
 	mustEmbedUnimplementedGameAdminServiceServer()
 }
 
@@ -118,6 +133,9 @@ func (UnimplementedGameAdminServiceServer) GameList(context.Context, *GameListRe
 }
 func (UnimplementedGameAdminServiceServer) GameStatuses(context.Context, *GameStatusesRequest) (*GameStatusesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GameStatuses not implemented")
+}
+func (UnimplementedGameAdminServiceServer) GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGame not implemented")
 }
 func (UnimplementedGameAdminServiceServer) mustEmbedUnimplementedGameAdminServiceServer() {}
 func (UnimplementedGameAdminServiceServer) testEmbeddedByValue()                          {}
@@ -212,6 +230,24 @@ func _GameAdminService_GameStatuses_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameAdminService_GetGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameAdminServiceServer).GetGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameAdminService_GetGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameAdminServiceServer).GetGame(ctx, req.(*GetGameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameAdminService_ServiceDesc is the grpc.ServiceDesc for GameAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -234,6 +270,10 @@ var GameAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GameStatuses",
 			Handler:    _GameAdminService_GameStatuses_Handler,
+		},
+		{
+			MethodName: "GetGame",
+			Handler:    _GameAdminService_GetGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
