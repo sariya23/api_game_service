@@ -760,9 +760,9 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\x10UpdateGameStatus\x12\x1f.gadmin.UpdateGameStatusRequest\x1a .gadmin.UpdateGameStatusResponse\"-\x82\xd3\xe4\x93\x02':\x01*2\"/v1/games-admin/update_game_status\x12m\n" +
 	"\n" +
 	"DeleteGame\x12\x19.gadmin.DeleteGameRequest\x1a\x1a.gadmin.DeleteGameResponse\"(\x82\xd3\xe4\x93\x02\"* /v1/games-admin/delete/{game_id}\x12^\n" +
-	"\bGameList\x12\x17.gadmin.GameListRequest\x1a\x18.gadmin.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/list\x12p\n" +
-	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statuses\x12]\n" +
-	"\aGetGame\x12\x16.gadmin.GetGameRequest\x1a\x17.gadmin.GetGameResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/games-admin/{game_id}B7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
+	"\bGameList\x12\x17.gadmin.GameListRequest\x1a\x18.gadmin.GameListResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/games-admin/list\x12]\n" +
+	"\aGetGame\x12\x16.gadmin.GetGameRequest\x1a\x17.gadmin.GetGameResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/games-admin/{game_id}\x12p\n" +
+	"\fGameStatuses\x12\x1b.gadmin.GameStatusesRequest\x1a\x1c.gadmin.GameStatusesResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/games-admin/game-statusesB7Z5github.com/sariya23/api_game_service/gen/admin;gadminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once
@@ -806,13 +806,13 @@ var file_admin_admin_proto_depIdxs = []int32{
 	0,  // 8: gadmin.GameAdminService.UpdateGameStatus:input_type -> gadmin.UpdateGameStatusRequest
 	2,  // 9: gadmin.GameAdminService.DeleteGame:input_type -> gadmin.DeleteGameRequest
 	4,  // 10: gadmin.GameAdminService.GameList:input_type -> gadmin.GameListRequest
-	6,  // 11: gadmin.GameAdminService.GameStatuses:input_type -> gadmin.GameStatusesRequest
-	8,  // 12: gadmin.GameAdminService.GetGame:input_type -> gadmin.GetGameRequest
+	8,  // 11: gadmin.GameAdminService.GetGame:input_type -> gadmin.GetGameRequest
+	6,  // 12: gadmin.GameAdminService.GameStatuses:input_type -> gadmin.GameStatusesRequest
 	1,  // 13: gadmin.GameAdminService.UpdateGameStatus:output_type -> gadmin.UpdateGameStatusResponse
 	3,  // 14: gadmin.GameAdminService.DeleteGame:output_type -> gadmin.DeleteGameResponse
 	5,  // 15: gadmin.GameAdminService.GameList:output_type -> gadmin.GameListResponse
-	7,  // 16: gadmin.GameAdminService.GameStatuses:output_type -> gadmin.GameStatusesResponse
-	9,  // 17: gadmin.GameAdminService.GetGame:output_type -> gadmin.GetGameResponse
+	9,  // 16: gadmin.GameAdminService.GetGame:output_type -> gadmin.GetGameResponse
+	7,  // 17: gadmin.GameAdminService.GameStatuses:output_type -> gadmin.GameStatusesResponse
 	13, // [13:18] is the sub-list for method output_type
 	8,  // [8:13] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name

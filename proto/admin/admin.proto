@@ -31,17 +31,17 @@ service GameAdminService {
     };
   };
 
-  rpc GameStatuses(GameStatusesRequest) returns (GameStatusesResponse) {
-    option (google.api.http) = {
-      get: "/v1/games-admin/game-statuses"
-    };
-  }
   // Получить игру с подробной информацией
   rpc GetGame(GetGameRequest) returns (GetGameResponse) {
     option (google.api.http) = {
       get: "/v1/games-admin/{game_id}"
     };
   };
+  rpc GameStatuses(GameStatusesRequest) returns (GameStatusesResponse) {
+    option (google.api.http) = {
+      get: "/v1/games-admin/game-statuses"
+    };
+  }
 }
 
 message UpdateGameStatusRequest {
