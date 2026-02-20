@@ -13,6 +13,7 @@ import (
 	date "google.golang.org/genproto/googleapis/type/date"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -567,7 +568,7 @@ func (x *GetGenresResponse) GetGenres() []string {
 
 type UpdateGameRequest struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
-	GameId        int64                   `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	GameId        *wrapperspb.Int64Value  `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	Game          *UpdateGameRequest_Game `protobuf:"bytes,2,opt,name=game,proto3" json:"game,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -603,11 +604,11 @@ func (*UpdateGameRequest) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *UpdateGameRequest) GetGameId() int64 {
+func (x *UpdateGameRequest) GetGameId() *wrapperspb.Int64Value {
 	if x != nil {
 		return x.GameId
 	}
-	return 0
+	return nil
 }
 
 func (x *UpdateGameRequest) GetGame() *UpdateGameRequest_Game {
@@ -1349,7 +1350,7 @@ var File_game_game_proto protoreflect.FileDescriptor
 
 const file_game_game_proto_rawDesc = "" +
 	"\n" +
-	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\x1a\x17validate/validate.proto\"\x81\x02\n" +
+	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\x1a\x17validate/validate.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x81\x02\n" +
 	"\vGameRequest\x12\x1d\n" +
 	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x05title\x12 \n" +
 	"\x06genres\x18\x02 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x06genres\x12)\n" +
@@ -1395,9 +1396,9 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04tags\x18\x01 \x03(\tR\x04tags\"\x12\n" +
 	"\x10GetGenresRequest\"+\n" +
 	"\x11GetGenresResponse\x12\x16\n" +
-	"\x06genres\x18\x01 \x03(\tR\x06genres\"\xdb\x02\n" +
-	"\x11UpdateGameRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x120\n" +
+	"\x06genres\x18\x01 \x03(\tR\x06genres\"\x82\x03\n" +
+	"\x11UpdateGameRequest\x12>\n" +
+	"\agame_id\x18\x01 \x01(\v2\x1b.google.protobuf.Int64ValueB\b\xfaB\x05\xa2\x01\x02\b\x01R\x06gameId\x120\n" +
 	"\x04game\x18\x02 \x01(\v2\x1c.game.UpdateGameRequest.GameR\x04game\x1a\xfa\x01\n" +
 	"\x04Game\x12\x1d\n" +
 	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x05title\x12 \n" +
@@ -1492,43 +1493,45 @@ var file_game_game_proto_goTypes = []any{
 	(*GameListMyRequest_Pagination)(nil),        // 22: game.GameListMyRequest.Pagination
 	(*GameListMyResponse_Games)(nil),            // 23: game.GameListMyResponse.Games
 	(*date.Date)(nil),                           // 24: google.type.Date
-	(common.GameStatusType)(0),                  // 25: game.common.GameStatusType
+	(*wrapperspb.Int64Value)(nil),               // 25: google.protobuf.Int64Value
+	(common.GameStatusType)(0),                  // 26: game.common.GameStatusType
 }
 var file_game_game_proto_depIdxs = []int32{
 	24, // 0: game.GameRequest.release_date:type_name -> google.type.Date
 	0,  // 1: game.AddGameRequest.game:type_name -> game.GameRequest
 	17, // 2: game.GetGameResponse.game:type_name -> game.GetGameResponse.Game
 	18, // 3: game.GameListResponse.games:type_name -> game.GameListResponse.ShortGame
-	19, // 4: game.UpdateGameRequest.game:type_name -> game.UpdateGameRequest.Game
-	20, // 5: game.GameListByCreatorRequest.pagination:type_name -> game.GameListByCreatorRequest.Pagination
-	21, // 6: game.GameListByCreatorResponse.games:type_name -> game.GameListByCreatorResponse.Games
-	25, // 7: game.GameListMyRequest.statuses:type_name -> game.common.GameStatusType
-	22, // 8: game.GameListMyRequest.pagination:type_name -> game.GameListMyRequest.Pagination
-	23, // 9: game.GameListMyResponse.games:type_name -> game.GameListMyResponse.Games
-	24, // 10: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
-	24, // 11: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
-	24, // 12: game.UpdateGameRequest.Game.release_date:type_name -> google.type.Date
-	1,  // 13: game.GameService.AddGame:input_type -> game.AddGameRequest
-	3,  // 14: game.GameService.GetGame:input_type -> game.GetGameRequest
-	5,  // 15: game.GameService.GameList:input_type -> game.GameListRequest
-	7,  // 16: game.GameService.GetTags:input_type -> game.GetTagsRequest
-	9,  // 17: game.GameService.GetGenres:input_type -> game.GetGenresRequest
-	11, // 18: game.GameService.UpdateGame:input_type -> game.UpdateGameRequest
-	13, // 19: game.GameService.GameListByCreator:input_type -> game.GameListByCreatorRequest
-	15, // 20: game.GameService.GameListMy:input_type -> game.GameListMyRequest
-	2,  // 21: game.GameService.AddGame:output_type -> game.AddGameResponse
-	4,  // 22: game.GameService.GetGame:output_type -> game.GetGameResponse
-	6,  // 23: game.GameService.GameList:output_type -> game.GameListResponse
-	8,  // 24: game.GameService.GetTags:output_type -> game.GetTagsResponse
-	10, // 25: game.GameService.GetGenres:output_type -> game.GetGenresResponse
-	12, // 26: game.GameService.UpdateGame:output_type -> game.UpdateGameResponse
-	14, // 27: game.GameService.GameListByCreator:output_type -> game.GameListByCreatorResponse
-	16, // 28: game.GameService.GameListMy:output_type -> game.GameListMyResponse
-	21, // [21:29] is the sub-list for method output_type
-	13, // [13:21] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	25, // 4: game.UpdateGameRequest.game_id:type_name -> google.protobuf.Int64Value
+	19, // 5: game.UpdateGameRequest.game:type_name -> game.UpdateGameRequest.Game
+	20, // 6: game.GameListByCreatorRequest.pagination:type_name -> game.GameListByCreatorRequest.Pagination
+	21, // 7: game.GameListByCreatorResponse.games:type_name -> game.GameListByCreatorResponse.Games
+	26, // 8: game.GameListMyRequest.statuses:type_name -> game.common.GameStatusType
+	22, // 9: game.GameListMyRequest.pagination:type_name -> game.GameListMyRequest.Pagination
+	23, // 10: game.GameListMyResponse.games:type_name -> game.GameListMyResponse.Games
+	24, // 11: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
+	24, // 12: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
+	24, // 13: game.UpdateGameRequest.Game.release_date:type_name -> google.type.Date
+	1,  // 14: game.GameService.AddGame:input_type -> game.AddGameRequest
+	3,  // 15: game.GameService.GetGame:input_type -> game.GetGameRequest
+	5,  // 16: game.GameService.GameList:input_type -> game.GameListRequest
+	7,  // 17: game.GameService.GetTags:input_type -> game.GetTagsRequest
+	9,  // 18: game.GameService.GetGenres:input_type -> game.GetGenresRequest
+	11, // 19: game.GameService.UpdateGame:input_type -> game.UpdateGameRequest
+	13, // 20: game.GameService.GameListByCreator:input_type -> game.GameListByCreatorRequest
+	15, // 21: game.GameService.GameListMy:input_type -> game.GameListMyRequest
+	2,  // 22: game.GameService.AddGame:output_type -> game.AddGameResponse
+	4,  // 23: game.GameService.GetGame:output_type -> game.GetGameResponse
+	6,  // 24: game.GameService.GameList:output_type -> game.GameListResponse
+	8,  // 25: game.GameService.GetTags:output_type -> game.GetTagsResponse
+	10, // 26: game.GameService.GetGenres:output_type -> game.GetGenresResponse
+	12, // 27: game.GameService.UpdateGame:output_type -> game.UpdateGameResponse
+	14, // 28: game.GameService.GameListByCreator:output_type -> game.GameListByCreatorResponse
+	16, // 29: game.GameService.GameListMy:output_type -> game.GameListMyResponse
+	22, // [22:30] is the sub-list for method output_type
+	14, // [14:22] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_game_game_proto_init() }

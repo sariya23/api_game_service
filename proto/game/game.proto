@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/api/date.proto";
 import "common/enums.proto";
 import "validate/validate.proto";
+import "google/protobuf/wrappers.proto";
 
 
 service GameService {
@@ -143,7 +144,7 @@ message GetGenresResponse {
 }
 
 message UpdateGameRequest {
-  int64 game_id = 1;
+  google.protobuf.Int64Value game_id = 1 [(validate.rules).any.required=true];
   Game game = 2;
   message Game {
     string title = 1 [(validate.rules).string.min_len = 1];

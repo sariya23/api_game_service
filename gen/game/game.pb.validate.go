@@ -1332,7 +1332,20 @@ func (m *UpdateGameRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for GameId
+	if m.GetGameId() == nil {
+		err := UpdateGameRequestValidationError{
+			field:  "GameId",
+			reason: "value is required",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if a := m.GetGameId(); a != nil {
+
+	}
 
 	if all {
 		switch v := interface{}(m.GetGame()).(type) {
