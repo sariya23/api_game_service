@@ -94,33 +94,19 @@ func (m *GameRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if all {
-		switch v := interface{}(m.GetReleaseDate()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, GameRequestValidationError{
-					field:  "ReleaseDate",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, GameRequestValidationError{
-					field:  "ReleaseDate",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
+	if m.GetReleaseDate() == nil {
+		err := GameRequestValidationError{
+			field:  "ReleaseDate",
+			reason: "value is required",
 		}
-	} else if v, ok := interface{}(m.GetReleaseDate()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return GameRequestValidationError{
-				field:  "ReleaseDate",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
+		if !all {
+			return err
 		}
+		errors = append(errors, err)
+	}
+
+	if a := m.GetReleaseDate(); a != nil {
+
 	}
 
 	if len(m.GetCoverImage()) < 1 {
@@ -2410,40 +2396,75 @@ func (m *UpdateGameRequest_Game) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Title
-
-	// no validation rules for Description
-
-	if all {
-		switch v := interface{}(m.GetReleaseDate()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpdateGameRequest_GameValidationError{
-					field:  "ReleaseDate",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, UpdateGameRequest_GameValidationError{
-					field:  "ReleaseDate",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
+	if utf8.RuneCountInString(m.GetTitle()) < 1 {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "Title",
+			reason: "value length must be at least 1 runes",
 		}
-	} else if v, ok := interface{}(m.GetReleaseDate()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateGameRequest_GameValidationError{
-				field:  "ReleaseDate",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
+		if !all {
+			return err
 		}
+		errors = append(errors, err)
 	}
 
-	// no validation rules for CoverImage
+	if len(m.GetGenres()) < 1 {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "Genres",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if utf8.RuneCountInString(m.GetDescription()) < 1 {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "Description",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetReleaseDate() == nil {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "ReleaseDate",
+			reason: "value is required",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if a := m.GetReleaseDate(); a != nil {
+
+	}
+
+	if len(m.GetCoverImage()) < 1 {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "CoverImage",
+			reason: "value length must be at least 1 bytes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(m.GetTags()) < 1 {
+		err := UpdateGameRequest_GameValidationError{
+			field:  "Tags",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if len(errors) > 0 {
 		return UpdateGameRequest_GameMultiError(errors)

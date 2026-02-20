@@ -77,7 +77,7 @@ message GameRequest {
   string title = 1 [(validate.rules).string.min_len = 1];
   repeated string genres = 2 [(validate.rules).repeated.min_items = 1];
   string description = 3 [(validate.rules).string.min_len = 1];
-  google.type.Date release_date = 4;
+  google.type.Date release_date = 4 [(validate.rules).any.required=true];
   bytes cover_image = 5 [(validate.rules).bytes.min_len = 1];
   repeated string tags = 6 [(validate.rules).repeated.min_items = 1];
 }
@@ -146,12 +146,12 @@ message UpdateGameRequest {
   int64 game_id = 1;
   Game game = 2;
   message Game {
-    string title = 1;
-    repeated string genres = 2;
-    string description = 3;
-    google.type.Date release_date = 4;
-    bytes cover_image = 5;
-    repeated string tags = 6;
+    string title = 1 [(validate.rules).string.min_len = 1];
+    repeated string genres = 2 [(validate.rules).repeated.min_items = 1];
+    string description = 3 [(validate.rules).string.min_len = 1];
+    google.type.Date release_date = 4 [(validate.rules).any.required=true];
+    bytes cover_image = 5 [(validate.rules).bytes.min_len = 1];
+    repeated string tags = 6 [(validate.rules).repeated.min_items = 1];
   }
 }
 

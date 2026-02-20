@@ -1349,12 +1349,12 @@ var File_game_game_proto protoreflect.FileDescriptor
 
 const file_game_game_proto_rawDesc = "" +
 	"\n" +
-	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\x1a\x17validate/validate.proto\"\xf7\x01\n" +
+	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\x1a\x17validate/validate.proto\"\x81\x02\n" +
 	"\vGameRequest\x12\x1d\n" +
 	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x05title\x12 \n" +
 	"\x06genres\x18\x02 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x06genres\x12)\n" +
-	"\vdescription\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\vdescription\x124\n" +
-	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12(\n" +
+	"\vdescription\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\vdescription\x12>\n" +
+	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateB\b\xfaB\x05\xa2\x01\x02\b\x01R\vreleaseDate\x12(\n" +
 	"\vcover_image\x18\x05 \x01(\fB\a\xfaB\x04z\x02\x10\x01R\n" +
 	"coverImage\x12\x1c\n" +
 	"\x04tags\x18\x06 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x04tags\"7\n" +
@@ -1395,18 +1395,18 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04tags\x18\x01 \x03(\tR\x04tags\"\x12\n" +
 	"\x10GetGenresRequest\"+\n" +
 	"\x11GetGenresResponse\x12\x16\n" +
-	"\x06genres\x18\x01 \x03(\tR\x06genres\"\xa2\x02\n" +
+	"\x06genres\x18\x01 \x03(\tR\x06genres\"\xdb\x02\n" +
 	"\x11UpdateGameRequest\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x120\n" +
-	"\x04game\x18\x02 \x01(\v2\x1c.game.UpdateGameRequest.GameR\x04game\x1a\xc1\x01\n" +
-	"\x04Game\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
-	"\x06genres\x18\x02 \x03(\tR\x06genres\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
-	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12\x1f\n" +
-	"\vcover_image\x18\x05 \x01(\fR\n" +
-	"coverImage\x12\x12\n" +
-	"\x04tags\x18\x06 \x03(\tR\x04tags\"\x14\n" +
+	"\x04game\x18\x02 \x01(\v2\x1c.game.UpdateGameRequest.GameR\x04game\x1a\xfa\x01\n" +
+	"\x04Game\x12\x1d\n" +
+	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x05title\x12 \n" +
+	"\x06genres\x18\x02 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x06genres\x12)\n" +
+	"\vdescription\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\vdescription\x12>\n" +
+	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateB\b\xfaB\x05\xa2\x01\x02\b\x01R\vreleaseDate\x12(\n" +
+	"\vcover_image\x18\x05 \x01(\fB\a\xfaB\x04z\x02\x10\x01R\n" +
+	"coverImage\x12\x1c\n" +
+	"\x04tags\x18\x06 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x04tags\"\x14\n" +
 	"\x12UpdateGameResponse\"\xc9\x01\n" +
 	"\x18GameListByCreatorRequest\x12&\n" +
 	"\n" +
