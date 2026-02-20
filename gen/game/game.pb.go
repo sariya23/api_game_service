@@ -7,6 +7,7 @@
 package game
 
 import (
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
 	common "github.com/sariya23/api_game_service/gen/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	date "google.golang.org/genproto/googleapis/type/date"
@@ -1348,15 +1349,15 @@ var File_game_game_proto protoreflect.FileDescriptor
 
 const file_game_game_proto_rawDesc = "" +
 	"\n" +
-	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\"\xc8\x01\n" +
-	"\vGameRequest\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
-	"\x06genres\x18\x02 \x03(\tR\x06genres\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x124\n" +
-	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12\x1f\n" +
-	"\vcover_image\x18\x05 \x01(\fR\n" +
-	"coverImage\x12\x12\n" +
-	"\x04tags\x18\x06 \x03(\tR\x04tags\"7\n" +
+	"\x0fgame/game.proto\x12\x04game\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\x1a\x12common/enums.proto\x1a\x17validate/validate.proto\"\xf7\x01\n" +
+	"\vGameRequest\x12\x1d\n" +
+	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x05title\x12 \n" +
+	"\x06genres\x18\x02 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x06genres\x12)\n" +
+	"\vdescription\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\vdescription\x124\n" +
+	"\frelease_date\x18\x04 \x01(\v2\x11.google.type.DateR\vreleaseDate\x12(\n" +
+	"\vcover_image\x18\x05 \x01(\fB\a\xfaB\x04z\x02\x10\x01R\n" +
+	"coverImage\x12\x1c\n" +
+	"\x04tags\x18\x06 \x03(\tB\b\xfaB\x05\x92\x01\x02\b\x01R\x04tags\"7\n" +
 	"\x0eAddGameRequest\x12%\n" +
 	"\x04game\x18\x01 \x01(\v2\x11.game.GameRequestR\x04game\"*\n" +
 	"\x0fAddGameResponse\x12\x17\n" +
@@ -1406,10 +1407,10 @@ const file_game_game_proto_rawDesc = "" +
 	"\vcover_image\x18\x05 \x01(\fR\n" +
 	"coverImage\x12\x12\n" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\"\x14\n" +
-	"\x12UpdateGameResponse\"\xc0\x01\n" +
-	"\x18GameListByCreatorRequest\x12\x1d\n" +
+	"\x12UpdateGameResponse\"\xc9\x01\n" +
+	"\x18GameListByCreatorRequest\x12&\n" +
 	"\n" +
-	"creator_id\x18\x01 \x01(\tR\tcreatorId\x12I\n" +
+	"creator_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\tcreatorId\x12I\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2).game.GameListByCreatorRequest.PaginationR\n" +
 	"pagination\x1a:\n" +

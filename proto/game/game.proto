@@ -7,6 +7,7 @@ option go_package = "github.com/sariya23/api_game_service/gen/game;game";
 import "google/api/annotations.proto";
 import "google/api/date.proto";
 import "common/enums.proto";
+import "validate/validate.proto";
 
 
 service GameService {
@@ -73,12 +74,12 @@ service GameService {
 }
 
 message GameRequest {
-  string title = 1;
-  repeated string genres = 2;
-  string description = 3;
+  string title = 1 [(validate.rules).string.min_len = 1];
+  repeated string genres = 2 [(validate.rules).repeated.min_items = 1];
+  string description = 3 [(validate.rules).string.min_len = 1];
   google.type.Date release_date = 4;
-  bytes cover_image = 5;
-  repeated string tags = 6;
+  bytes cover_image = 5 [(validate.rules).bytes.min_len = 1];
+  repeated string tags = 6 [(validate.rules).repeated.min_items = 1];
 }
 
 message AddGameRequest {
@@ -157,7 +158,7 @@ message UpdateGameRequest {
 message UpdateGameResponse {}
 
 message GameListByCreatorRequest {
-  string creator_id = 1;
+  string creator_id = 1 [(validate.rules).string.min_len = 1];
   Pagination pagination = 2;
   message Pagination {
     uint32 limit = 2;
