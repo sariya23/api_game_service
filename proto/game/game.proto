@@ -72,6 +72,13 @@ service GameService {
       body: "*"
     };
   }
+
+  rpc GetGameStatusesByIds(GetGameStatusesByIdsRequest) returns (GetGameStatusesByIdsResponse) {
+    option (google.api.http) = {
+      post: "/v1/games/status-by-ids"
+      body: "*"
+    };
+  }
 }
 
 message GameRequest {
@@ -194,4 +201,16 @@ message GameListMyResponse {
     string cover_image_url = 5;
   }
   int64 total = 2;
+}
+
+message GetGameStatusesByIdsRequest {
+  repeated int64 game_ids = 1 [(validate.rules).repeated.min_items = 1];
+}
+
+message GetGameStatusesByIdsResponse {
+  repeated GameStatus game_statuses = 1;
+  message  GameStatus {
+    common.GameStatusType statuses = 1;
+    int64 game_id = 2;
+  }
 }

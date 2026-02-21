@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameService_AddGame_FullMethodName           = "/game.GameService/AddGame"
-	GameService_GetGame_FullMethodName           = "/game.GameService/GetGame"
-	GameService_GameList_FullMethodName          = "/game.GameService/GameList"
-	GameService_GetTags_FullMethodName           = "/game.GameService/GetTags"
-	GameService_GetGenres_FullMethodName         = "/game.GameService/GetGenres"
-	GameService_UpdateGame_FullMethodName        = "/game.GameService/UpdateGame"
-	GameService_GameListByCreator_FullMethodName = "/game.GameService/GameListByCreator"
-	GameService_GameListMy_FullMethodName        = "/game.GameService/GameListMy"
+	GameService_AddGame_FullMethodName              = "/game.GameService/AddGame"
+	GameService_GetGame_FullMethodName              = "/game.GameService/GetGame"
+	GameService_GameList_FullMethodName             = "/game.GameService/GameList"
+	GameService_GetTags_FullMethodName              = "/game.GameService/GetTags"
+	GameService_GetGenres_FullMethodName            = "/game.GameService/GetGenres"
+	GameService_UpdateGame_FullMethodName           = "/game.GameService/UpdateGame"
+	GameService_GameListByCreator_FullMethodName    = "/game.GameService/GameListByCreator"
+	GameService_GameListMy_FullMethodName           = "/game.GameService/GameListMy"
+	GameService_GetGameStatusesByIds_FullMethodName = "/game.GameService/GetGameStatusesByIds"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -49,6 +50,7 @@ type GameServiceClient interface {
 	GameListByCreator(ctx context.Context, in *GameListByCreatorRequest, opts ...grpc.CallOption) (*GameListByCreatorResponse, error)
 	// GameListMy отдает список игр, которые создал пользователь
 	GameListMy(ctx context.Context, in *GameListMyRequest, opts ...grpc.CallOption) (*GameListMyResponse, error)
+	GetGameStatusesByIds(ctx context.Context, in *GetGameStatusesByIdsRequest, opts ...grpc.CallOption) (*GetGameStatusesByIdsResponse, error)
 }
 
 type gameServiceClient struct {
@@ -139,6 +141,16 @@ func (c *gameServiceClient) GameListMy(ctx context.Context, in *GameListMyReques
 	return out, nil
 }
 
+func (c *gameServiceClient) GetGameStatusesByIds(ctx context.Context, in *GetGameStatusesByIdsRequest, opts ...grpc.CallOption) (*GetGameStatusesByIdsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGameStatusesByIdsResponse)
+	err := c.cc.Invoke(ctx, GameService_GetGameStatusesByIds_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility.
@@ -159,6 +171,7 @@ type GameServiceServer interface {
 	GameListByCreator(context.Context, *GameListByCreatorRequest) (*GameListByCreatorResponse, error)
 	// GameListMy отдает список игр, которые создал пользователь
 	GameListMy(context.Context, *GameListMyRequest) (*GameListMyResponse, error)
+	GetGameStatusesByIds(context.Context, *GetGameStatusesByIdsRequest) (*GetGameStatusesByIdsResponse, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -192,6 +205,9 @@ func (UnimplementedGameServiceServer) GameListByCreator(context.Context, *GameLi
 }
 func (UnimplementedGameServiceServer) GameListMy(context.Context, *GameListMyRequest) (*GameListMyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GameListMy not implemented")
+}
+func (UnimplementedGameServiceServer) GetGameStatusesByIds(context.Context, *GetGameStatusesByIdsRequest) (*GetGameStatusesByIdsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGameStatusesByIds not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 func (UnimplementedGameServiceServer) testEmbeddedByValue()                     {}
@@ -358,6 +374,24 @@ func _GameService_GameListMy_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_GetGameStatusesByIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGameStatusesByIdsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).GetGameStatusesByIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_GetGameStatusesByIds_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).GetGameStatusesByIds(ctx, req.(*GetGameStatusesByIdsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -396,6 +430,10 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GameListMy",
 			Handler:    _GameService_GameListMy_Handler,
+		},
+		{
+			MethodName: "GetGameStatusesByIds",
+			Handler:    _GameService_GetGameStatusesByIds_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

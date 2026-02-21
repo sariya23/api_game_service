@@ -171,6 +171,38 @@
         ]
       }
     },
+    "/v1/games/status-by-ids": {
+      "post": {
+        "operationId": "GameService_GetGameStatusesByIds",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGetGameStatusesByIdsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGetGameStatusesByIdsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameService"
+        ]
+      }
+    },
     "/v1/games/tags": {
       "get": {
         "summary": "GetTags получить тэги игр",
@@ -279,6 +311,18 @@
         },
         "coverImageUrl": {
           "type": "string"
+        }
+      }
+    },
+    "GetGameStatusesByIdsResponseGameStatus": {
+      "type": "object",
+      "properties": {
+        "statuses": {
+          "$ref": "#/definitions/commonGameStatusType"
+        },
+        "gameId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -537,6 +581,30 @@
         },
         "creatorId": {
           "type": "string"
+        }
+      }
+    },
+    "gameGetGameStatusesByIdsRequest": {
+      "type": "object",
+      "properties": {
+        "gameIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "gameGetGameStatusesByIdsResponse": {
+      "type": "object",
+      "properties": {
+        "gameStatuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetGameStatusesByIdsResponseGameStatus"
+          }
         }
       }
     },
