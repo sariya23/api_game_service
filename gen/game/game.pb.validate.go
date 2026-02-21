@@ -3267,7 +3267,7 @@ func (m *GetGameStatusesByIdsResponse_GameStatus) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Statuses
+	// no validation rules for Status
 
 	// no validation rules for GameId
 

@@ -210,7 +210,7 @@ message GetGameStatusesByIdsRequest {
 message GetGameStatusesByIdsResponse {
   repeated GameStatus game_statuses = 1;
   message  GameStatus {
-    common.GameStatusType statuses = 1;
+    common.GameStatusType status = 1;
     int64 game_id = 2;
   }
 }

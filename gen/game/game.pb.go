@@ -1436,7 +1436,7 @@ func (x *GameListMyResponse_Games) GetCoverImageUrl() string {
 
 type GetGameStatusesByIdsResponse_GameStatus struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Statuses      common.GameStatusType  `protobuf:"varint,1,opt,name=statuses,proto3,enum=game.common.GameStatusType" json:"statuses,omitempty"`
+	Status        common.GameStatusType  `protobuf:"varint,1,opt,name=status,proto3,enum=game.common.GameStatusType" json:"status,omitempty"`
 	GameId        int64                  `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1472,9 +1472,9 @@ func (*GetGameStatusesByIdsResponse_GameStatus) Descriptor() ([]byte, []int) {
 	return file_game_game_proto_rawDescGZIP(), []int{18, 0}
 }
 
-func (x *GetGameStatusesByIdsResponse_GameStatus) GetStatuses() common.GameStatusType {
+func (x *GetGameStatusesByIdsResponse_GameStatus) GetStatus() common.GameStatusType {
 	if x != nil {
-		return x.Statuses
+		return x.Status
 	}
 	return common.GameStatusType(0)
 }
@@ -1583,12 +1583,12 @@ const file_game_game_proto_rawDesc = "" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12&\n" +
 	"\x0fcover_image_url\x18\x05 \x01(\tR\rcoverImageUrl\"B\n" +
 	"\x1bGetGameStatusesByIdsRequest\x12#\n" +
-	"\bgame_ids\x18\x01 \x03(\x03B\b\xfaB\x05\x92\x01\x02\b\x01R\agameIds\"\xd2\x01\n" +
+	"\bgame_ids\x18\x01 \x03(\x03B\b\xfaB\x05\x92\x01\x02\b\x01R\agameIds\"\xce\x01\n" +
 	"\x1cGetGameStatusesByIdsResponse\x12R\n" +
-	"\rgame_statuses\x18\x01 \x03(\v2-.game.GetGameStatusesByIdsResponse.GameStatusR\fgameStatuses\x1a^\n" +
+	"\rgame_statuses\x18\x01 \x03(\v2-.game.GetGameStatusesByIdsResponse.GameStatusR\fgameStatuses\x1aZ\n" +
 	"\n" +
-	"GameStatus\x127\n" +
-	"\bstatuses\x18\x01 \x01(\x0e2\x1b.game.common.GameStatusTypeR\bstatuses\x12\x17\n" +
+	"GameStatus\x123\n" +
+	"\x06status\x18\x01 \x01(\x0e2\x1b.game.common.GameStatusTypeR\x06status\x12\x17\n" +
 	"\agame_id\x18\x02 \x01(\x03R\x06gameId2\xde\x06\n" +
 	"\vGameService\x12L\n" +
 	"\aAddGame\x12\x14.game.AddGameRequest\x1a\x15.game.AddGameResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/games\x12S\n" +
@@ -1664,7 +1664,7 @@ var file_game_game_proto_depIdxs = []int32{
 	27, // 12: game.GetGameResponse.Game.release_date:type_name -> google.type.Date
 	27, // 13: game.GameListResponse.ShortGame.release_date:type_name -> google.type.Date
 	27, // 14: game.UpdateGameRequest.Game.release_date:type_name -> google.type.Date
-	29, // 15: game.GetGameStatusesByIdsResponse.GameStatus.statuses:type_name -> game.common.GameStatusType
+	29, // 15: game.GetGameStatusesByIdsResponse.GameStatus.status:type_name -> game.common.GameStatusType
 	1,  // 16: game.GameService.AddGame:input_type -> game.AddGameRequest
 	3,  // 17: game.GameService.GetGame:input_type -> game.GetGameRequest
 	5,  // 18: game.GameService.GameList:input_type -> game.GameListRequest

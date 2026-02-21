@@ -317,7 +317,7 @@
     "GetGameStatusesByIdsResponseGameStatus": {
       "type": "object",
       "properties": {
-        "statuses": {
+        "status": {
           "$ref": "#/definitions/commonGameStatusType"
         },
         "gameId": {
