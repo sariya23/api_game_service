@@ -293,6 +293,7 @@ type GameListRequest struct {
 	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	Offset        uint32                 `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
 	Years         []int32                `protobuf:"varint,6,rep,packed,name=years,proto3" json:"years,omitempty"`
+	SearchText    string                 `protobuf:"bytes,7,opt,name=search_text,json=searchText,proto3" json:"search_text,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -360,6 +361,13 @@ func (x *GameListRequest) GetYears() []int32 {
 		return x.Years
 	}
 	return nil
+}
+
+func (x *GameListRequest) GetSearchText() string {
+	if x != nil {
+		return x.SearchText
+	}
+	return ""
 }
 
 type GameListResponse struct {
@@ -1516,13 +1524,15 @@ const file_game_game_proto_rawDesc = "" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x0e\n" +
 	"\x02ID\x18\a \x01(\x03R\x02ID\x12\x1d\n" +
 	"\n" +
-	"creator_id\x18\b \x01(\tR\tcreatorId\"\x8d\x01\n" +
+	"creator_id\x18\b \x01(\tR\tcreatorId\"\xae\x01\n" +
 	"\x0fGameListRequest\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06genres\x18\x03 \x03(\tR\x06genres\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12\x16\n" +
 	"\x06offset\x18\x05 \x01(\rR\x06offset\x12\x14\n" +
-	"\x05years\x18\x06 \x03(\x05R\x05yearsJ\x04\b\x01\x10\x02R\x04year\"\xfe\x01\n" +
+	"\x05years\x18\x06 \x03(\x05R\x05years\x12\x1f\n" +
+	"\vsearch_text\x18\a \x01(\tR\n" +
+	"searchTextJ\x04\b\x01\x10\x02R\x04year\"\xfe\x01\n" +
 	"\x10GameListResponse\x126\n" +
 	"\x05games\x18\x01 \x03(\v2 .game.GameListResponse.ShortGameR\x05games\x1a\xb1\x01\n" +
 	"\tShortGame\x12\x0e\n" +

@@ -696,6 +696,8 @@ func (m *GameListRequest) validate(all bool) error {
 
 	// no validation rules for Offset
 
+	// no validation rules for SearchText
+
 	if len(errors) > 0 {
 		return GameListRequestMultiError(errors)
 	}
