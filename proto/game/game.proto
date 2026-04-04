@@ -79,6 +79,13 @@ service GameService {
       body: "*"
     };
   }
+
+  // GetGameSnapshot отдает снимок игры. Может вызываться только пользователем, кто создал эту игру
+  rpc GetGameSnapshot(GetGameSnapshotRequest) returns (GetGameSnapshotResponse) {
+    option (google.api.http) = {
+      get: "/v1/games/snapshot/{game_id}"
+    };
+  }
 }
 
 message GameRequest {
@@ -213,5 +220,23 @@ message GetGameStatusesByIdsResponse {
   message  GameStatus {
     common.GameStatusType status = 1;
     int64 game_id = 2;
+  }
+}
+
+message GetGameSnapshotRequest {
+  int64 game_id = 1 [(validate.rules).int64.gte = 0];
+}
+
+message GetGameSnapshotResponse {
+  Game game = 1;
+  message Game {
+    string title = 1;
+    repeated string genres = 2;
+    string description = 3;
+    google.type.Date release_date = 4;
+    string cover_image_url = 5;
+    repeated string tags = 6;
+    int64 ID = 7;
+    string creator_id = 8;
   }
 }

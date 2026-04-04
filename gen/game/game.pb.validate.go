@@ -2360,6 +2360,250 @@ var _ interface {
 	ErrorName() string
 } = GetGameStatusesByIdsResponseValidationError{}
 
+// Validate checks the field values on GetGameSnapshotRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetGameSnapshotRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetGameSnapshotRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetGameSnapshotRequestMultiError, or nil if none found.
+func (m *GetGameSnapshotRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetGameSnapshotRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetGameId() < 0 {
+		err := GetGameSnapshotRequestValidationError{
+			field:  "GameId",
+			reason: "value must be greater than or equal to 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return GetGameSnapshotRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetGameSnapshotRequestMultiError is an error wrapping multiple validation
+// errors returned by GetGameSnapshotRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetGameSnapshotRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetGameSnapshotRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetGameSnapshotRequestMultiError) AllErrors() []error { return m }
+
+// GetGameSnapshotRequestValidationError is the validation error returned by
+// GetGameSnapshotRequest.Validate if the designated constraints aren't met.
+type GetGameSnapshotRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetGameSnapshotRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetGameSnapshotRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetGameSnapshotRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetGameSnapshotRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetGameSnapshotRequestValidationError) ErrorName() string {
+	return "GetGameSnapshotRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetGameSnapshotRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetGameSnapshotRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetGameSnapshotRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetGameSnapshotRequestValidationError{}
+
+// Validate checks the field values on GetGameSnapshotResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetGameSnapshotResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetGameSnapshotResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetGameSnapshotResponseMultiError, or nil if none found.
+func (m *GetGameSnapshotResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetGameSnapshotResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetGame()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetGameSnapshotResponseValidationError{
+					field:  "Game",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetGameSnapshotResponseValidationError{
+					field:  "Game",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetGame()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetGameSnapshotResponseValidationError{
+				field:  "Game",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return GetGameSnapshotResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetGameSnapshotResponseMultiError is an error wrapping multiple validation
+// errors returned by GetGameSnapshotResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetGameSnapshotResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetGameSnapshotResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetGameSnapshotResponseMultiError) AllErrors() []error { return m }
+
+// GetGameSnapshotResponseValidationError is the validation error returned by
+// GetGameSnapshotResponse.Validate if the designated constraints aren't met.
+type GetGameSnapshotResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetGameSnapshotResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetGameSnapshotResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetGameSnapshotResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetGameSnapshotResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetGameSnapshotResponseValidationError) ErrorName() string {
+	return "GetGameSnapshotResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetGameSnapshotResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetGameSnapshotResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetGameSnapshotResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetGameSnapshotResponseValidationError{}
+
 // Validate checks the field values on GetGameResponse_Game with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -3354,3 +3598,145 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetGameStatusesByIdsResponse_GameStatusValidationError{}
+
+// Validate checks the field values on GetGameSnapshotResponse_Game with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetGameSnapshotResponse_Game) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetGameSnapshotResponse_Game with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetGameSnapshotResponse_GameMultiError, or nil if none found.
+func (m *GetGameSnapshotResponse_Game) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetGameSnapshotResponse_Game) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Title
+
+	// no validation rules for Description
+
+	if all {
+		switch v := interface{}(m.GetReleaseDate()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetGameSnapshotResponse_GameValidationError{
+					field:  "ReleaseDate",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetGameSnapshotResponse_GameValidationError{
+					field:  "ReleaseDate",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetReleaseDate()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetGameSnapshotResponse_GameValidationError{
+				field:  "ReleaseDate",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for CoverImageUrl
+
+	// no validation rules for ID
+
+	// no validation rules for CreatorId
+
+	if len(errors) > 0 {
+		return GetGameSnapshotResponse_GameMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetGameSnapshotResponse_GameMultiError is an error wrapping multiple
+// validation errors returned by GetGameSnapshotResponse_Game.ValidateAll() if
+// the designated constraints aren't met.
+type GetGameSnapshotResponse_GameMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetGameSnapshotResponse_GameMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetGameSnapshotResponse_GameMultiError) AllErrors() []error { return m }
+
+// GetGameSnapshotResponse_GameValidationError is the validation error returned
+// by GetGameSnapshotResponse_Game.Validate if the designated constraints
+// aren't met.
+type GetGameSnapshotResponse_GameValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetGameSnapshotResponse_GameValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetGameSnapshotResponse_GameValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetGameSnapshotResponse_GameValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetGameSnapshotResponse_GameValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetGameSnapshotResponse_GameValidationError) ErrorName() string {
+	return "GetGameSnapshotResponse_GameValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetGameSnapshotResponse_GameValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetGameSnapshotResponse_Game.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetGameSnapshotResponse_GameValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetGameSnapshotResponse_GameValidationError{}
