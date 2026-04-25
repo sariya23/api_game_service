@@ -315,7 +315,7 @@
     "gadminUpdateGameStatusRequest": {
       "type": "object",
       "properties": {
-        "gameId": {
+        "gameIds": {
           "type": "array",
           "items": {
             "type": "string",

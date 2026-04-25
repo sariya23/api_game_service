@@ -26,7 +26,7 @@ const (
 
 type UpdateGameStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        []int64                `protobuf:"varint,1,rep,packed,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	GameIds       []int64                `protobuf:"varint,1,rep,packed,name=game_ids,json=gameIds,proto3" json:"game_ids,omitempty"`
 	NewStatus     common.GameStatusType  `protobuf:"varint,2,opt,name=new_status,json=newStatus,proto3,enum=game.common.GameStatusType" json:"new_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -62,9 +62,9 @@ func (*UpdateGameStatusRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UpdateGameStatusRequest) GetGameId() []int64 {
+func (x *UpdateGameStatusRequest) GetGameIds() []int64 {
 	if x != nil {
-		return x.GameId
+		return x.GameIds
 	}
 	return nil
 }
@@ -712,9 +712,9 @@ var File_admin_admin_proto protoreflect.FileDescriptor
 
 const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x11admin/admin.proto\x12\x06gadmin\x1a\x15google/api/date.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x12common/enums.proto\"n\n" +
-	"\x17UpdateGameStatusRequest\x12\x17\n" +
-	"\agame_id\x18\x01 \x03(\x03R\x06gameId\x12:\n" +
+	"\x11admin/admin.proto\x12\x06gadmin\x1a\x15google/api/date.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x12common/enums.proto\"p\n" +
+	"\x17UpdateGameStatusRequest\x12\x19\n" +
+	"\bgame_ids\x18\x01 \x03(\x03R\agameIds\x12:\n" +
 	"\n" +
 	"new_status\x18\x02 \x01(\x0e2\x1b.game.common.GameStatusTypeR\tnewStatus\"\x1a\n" +
 	"\x18UpdateGameStatusResponse\",\n" +

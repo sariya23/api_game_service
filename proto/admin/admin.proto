@@ -45,7 +45,7 @@ service GameAdminService {
 }
 
 message UpdateGameStatusRequest {
-  repeated int64 game_id = 1;
+  repeated int64 game_ids = 1;
   game.common.GameStatusType new_status = 2;
 }
 
